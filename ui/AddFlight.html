@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Flight</title>
+</head>
+<body>
+    <h1>Add a Flight here</h1>
+    <form method="post" action="http://localhost:8080/Project-1/add-flight">
+        <label for="origin">Origin City: </label><br>
+        <input type="text" name="origin" required/><br>
+        <label for="destination">Destination: </label><br>
+        <input type="text" name="destination" required/><br>
+        <label for="start_time">Start Date/Time: </label><br>
+        <input type="datetime-local" name="start_time" required/><br>
+        <label for="end_time">End Date/Time: </label><br>
+        <input type="datetime-local" name="end_time" required/><br>
+        <label for="flight_number">Flight Number: </label><br>
+        <input type="number" name="flight_number" min="100" value="100" required/><br><br>
+        <input type="submit" value="Submit" /><br><br>
+        <input type="reset" value="Reset" />
+    </form> 
+    
+</body>
+</html>

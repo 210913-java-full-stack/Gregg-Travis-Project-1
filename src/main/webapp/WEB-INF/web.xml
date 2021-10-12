@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--web.xml is your depoyment descriptor
+<!--web.xml is your deployment descriptor
         this is how tomcat gathers information about your project, such as welcome files,
             available servlets, how to handle errors and exceptions, and other various
             configurations you may want tomcat to know about.
@@ -22,6 +22,26 @@
 
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registerServlet</servlet-name>
+        <servlet-class>servlets.RegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>registerServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addFlightServlet</servlet-name>
+        <servlet-class>servlets.AddFlightServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addFlightServlet</servlet-name>
+        <url-pattern>/add-flight</url-pattern>
     </servlet-mapping>
 </web-app>
