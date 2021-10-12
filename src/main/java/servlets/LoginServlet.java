@@ -13,7 +13,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String user = req.getParameter("user_name");
         String pass = req.getParameter("password");
-        //String role = req.getParameter("role");
         boolean role;
         if (req.getParameter("role") == "User")
             role = false;

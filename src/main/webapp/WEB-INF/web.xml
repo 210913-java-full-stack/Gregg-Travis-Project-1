@@ -34,4 +34,14 @@
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addFlightServlet</servlet-name>
+        <servlet-class>servlets.AddFlightServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addFlightServlet</servlet-name>
+        <url-pattern>/add-flight</url-pattern>
+    </servlet-mapping>
 </web-app>

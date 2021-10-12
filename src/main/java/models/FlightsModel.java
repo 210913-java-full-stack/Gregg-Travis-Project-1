@@ -1,17 +1,28 @@
 package models;
 
+import java.util.Date;
+
 public class FlightsModel {
-    private String origin;
-    private String destination;
+    private String origin, destination, status;
     private int flightNumber;
-    private double eta;
+    private Date eta;
     private boolean checkIn;
 
-    public FlightsModel(String origin, String destination, int flightNumber, double eta) {
+
+    public FlightsModel(String origin, String destination, int flightNumber, Date eta) {
         this.origin = origin;
         this.destination = destination;
         this.flightNumber = flightNumber;
         this.eta = eta;
+        this.status = "Pre-Flight";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getOrigin() {
@@ -38,11 +49,11 @@ public class FlightsModel {
         this.flightNumber = flightNumber;
     }
 
-    public double getEta() {
+    public Date getEta() {
         return eta;
     }
 
-    public void setEta(double eta) {
+    public void setEta(Date eta) {
         this.eta = eta;
     }
 
