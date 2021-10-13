@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Log-In Form</title>
+</head>
+
+<body>
+    <h1>Please sign-in to use this terminal</h1>
+    <form method="post" action="http://localhost:8080/Project-1/login">
+        <label for="user_name">User Name: </label><br>
+        <input type="text" id="user_name" required /><br>
+        <label for="password">Password: </label><br>
+        <input type="text" id="password" required /><br><br>
+        <label for="role">Select Your Role: </label><br>
+        <select name="role">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit" /><br><br>
+        <input type="reset" value="Reset" /><br><br>
+    </form>
+
+    <a href="Register.html">Need to Register an account? Click here</a>
+
+
+</body>
+
+</html>
