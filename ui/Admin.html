@@ -41,26 +41,16 @@
         </form>
     </div>
     <div>
-        <h1>All Users with Active Ticket(s)/Flight(s)</h1>
+        <h1>Passengers with a Ticket</h1>
 
         <table>
             <thead>
                 <tr>
                     <th>
-                        Active Passengers:
+                        Passenger:
                     </th>
-                </tr>
-            </thead>
-            <tbody id="activePassengersTable">
-
-            </tbody>
-        </table>
-
-        <table>
-            <thead>
-                <tr>
                     <th>
-                        Current Active Flight:
+                        Flight Number:
                     </th>
                     <th>
                         Start Date/Time:
@@ -70,37 +60,22 @@
                     </th>
                 </tr>
             </thead>
-            <tbody id="activeFlightsTable">
+            <tbody id="userFlightsTable">
 
             </tbody>
         </table>
     </div>
     <script>
-        async function getActivePassengers() {
-            let resp = await fetch("http://localhost:8080/Project-1/active-passengers")
-            let json = await resp.jason();
-            let table = document.getElementById("activePassengersTable")
-
-            for (let element of json) {
-                let tr = table.insertRow(-1);
-                for (let key in elements){
-                    let cell = tr.insertCell(-1);
-                    cell.innerHTML = element[key]//why not value here?
-                }
-            }
-        }
-    </script>
-    <script>
         async function getAllFlights() {
             let resp = await fetch("http://localhost:8080/Project-1/active-Flights")
             let json = await resp.jason();
-            let table = document.getElementById("activeFlightsTable")
+            let table = document.getElementById("userFlightsTable")
 
             for (let element of json) {
                 let tr = table.insertRow(-1);
                 for (let key in elements){
                     let cell = tr.insertCell(-1);
-                    cell.innerHTML = element[key]//why not value here?
+                    cell.innerHTML = element[key]
                 }
             }
         }
