@@ -8,6 +8,10 @@ public class FlightsModel {
     private Date begin, end;
     private boolean checkIn;
 
+    public FlightsModel(int fn) {
+        this.flightNumber = fn;
+    }
+
 
     public FlightsModel(String origin, String destination, int flightNumber, Date begin, Date end) {
         this.origin = origin;
