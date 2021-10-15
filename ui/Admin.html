@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminFlightPage</title>
+</head>
+
+<body>
+
+<div>
+    <h1>Schedule A New Flight</h1>
+    <form method="post" action="http://localhost:8080/Project-1/add-new-flight">
+        <label for="origin">Origin City: </label><br>
+        <input type="text" name="origin" required /><br>
+
+        <label for="destination">Destination: </label><br>
+        <input type="text" name="destination" required /><br>
+
+        <label for="start_time">Start Date/Time: </label><br>
+        <input type="datetime-local" name="start_time" required /><br>
+
+        <label for="end_time">End Date/Time: </label><br>
+        <input type="datetime-local" name="end_time" required /><br>
+
+        <label for="flight_number">Flight Number: </label><br>
+        <input type="number" name="flight_number" min="100" value="100" required /><br><br>
+
+        <input type="submit" value="Submit" /><br><br>
+        <input type="reset" value="Reset" />
+    </form>
+</div>
+
+<div>
+    <h1>Cancel A Flight</h1>
+    <form method="delete" action="http://localhost:8080/Project-1/cancel-flight">
+        <label for="flight_number">Flight Number: </label><br>
+        <input type="number" name="flight_number" min="100" value="100" required /><br><br>
+        <input type="submit" value="Cancel Flight" /><br><br>
+        <input type="reset" value="Reset" />
+    </form>
+</div>
+
+<div>
+    <h1>Active Flight(s)</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Active Passengers:
+            </th>
+        </tr>
+        </thead>
+        <tbody id="activePassengersTable">
+
+        </tbody>
+    </table>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Current Active Flight:
+            </th>
+            <th>
+                Start Date/Time:
+            </th>
+            <th>
+                End Date/Time:
+            </th>
+        </tr>
+        </thead>
+        <tbody id="activeFlightsTable">
+
+        </tbody>
+    </table>
+</div>
+<script>
+        async function getActivePassengers() {
+            let resp = await fetch("http://localhost:8080/Project-1/active-passengers")
+            let json = await resp.jason();
+            let table = document.getElementById("activePassengersTable")
+
+            for (let element of json) {
+                let tr = table.insertRow(-1);
+                for (let key in elements){
+                    let cell = tr.insertCell(-1);
+                    cell.innerHTML = element[key]
+                }
+            }
+        }
+    </script>
+<script>
+        async function getAllFlights() {
+            let resp = await fetch("http://localhost:8080/Project-1/active-Flights")
+            let json = await resp.jason();
+            let table = document.getElementById("activeFlightsTable")
+
+            for (let element of json) {
+                let tr = table.insertRow(-1);
+                for (let key in elements){
+                    let cell = tr.insertCell(-1);
+                    cell.innerHTML = element[key]
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
