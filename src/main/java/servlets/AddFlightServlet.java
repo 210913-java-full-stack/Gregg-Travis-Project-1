@@ -17,20 +17,21 @@ public class AddFlightServlet extends HttpServlet {
         String origin = req.getParameter("origin");
         String dest = req.getParameter("destination");
         int flightNumber = Integer.parseInt(req.getParameter("flight_number"));
-        //date tinkering
-        Date eta = new Date();
+        Date begin = new Date();
+        Date end = new Date();
         try {
-            Date begin = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("12/10/2021 06:00:00");
-            Date end = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("12/10/2021 09:00:00");
-            eta.setTime(end.getTime() - begin.getTime());
+            begin = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(req.getParameter("start_time"));
+            end = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(req.getParameter("end_time"));
+            System.out.println(begin);
+            System.out.println(end);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        FlightsModel newFlight = new FlightsModel(origin, dest, flightNumber, eta);
+        FlightsModel newFlight = new FlightsModel(origin, dest, flightNumber, begin, end);
 
         PrintWriter out = resp.getWriter();
-        out.println(newFlight.getOrigin() + ", " + newFlight.getDestination() + ", " + newFlight.getEta() + ", " +
-                newFlight.getFlightNumber());
+        out.println(newFlight.getOrigin() + ", " + newFlight.getDestination() +", " + newFlight.getFlightNumber() + ", "
+                + newFlight.getBegin() + ", " + newFlight.getEnd());
     }
 }

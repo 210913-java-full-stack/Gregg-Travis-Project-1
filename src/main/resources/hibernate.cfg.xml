@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- SQL Dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MariaDB103Dialect</property>
+
+        <!-- Database Connection Settings -->
+        <property name="hibernate.connection.driver_class">com.mariadb.jdbc.Driver</property>
+        <property name="hibernate.connection.url">mariadb://training-db.ckbqjaef5nqv.us-east-2.rds.amazonaws.com/hibernate</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+
+        <!-- Connection Pool Size (built-in) -->
+        <property name="hibernate.connection.pool.size">1</property>
+
+        <!-- show all generate SQL query -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop the existing tables and create new one -->
+        <property name="hbm2ddl.auto">create</property>
+
+        <!-- Mention here all the model classes along with their package name -->
+        <mapping class="com.revature.hibernate.Student"/>
+    </session-factory>
+</hibernate-configuration>

@@ -5,15 +5,16 @@ import java.util.Date;
 public class FlightsModel {
     private String origin, destination, status;
     private int flightNumber;
-    private Date eta;
+    private Date begin, end;
     private boolean checkIn;
 
 
-    public FlightsModel(String origin, String destination, int flightNumber, Date eta) {
+    public FlightsModel(String origin, String destination, int flightNumber, Date begin, Date end) {
         this.origin = origin;
         this.destination = destination;
         this.flightNumber = flightNumber;
-        this.eta = eta;
+        this.begin = begin;
+        this.end = end;
         this.status = "Pre-Flight";
     }
 
@@ -49,12 +50,20 @@ public class FlightsModel {
         this.flightNumber = flightNumber;
     }
 
-    public Date getEta() {
-        return eta;
+    public Date getBegin() {
+        return begin;
     }
 
-    public void setEta(Date eta) {
-        this.eta = eta;
+    public void setBegin(Date begin) {
+        this.begin = begin;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
     public boolean isCheckIn() {
