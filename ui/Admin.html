@@ -96,7 +96,6 @@
             let resp = await fetch("http://localhost:8080/Project-1/active-Flights")
             let json = await resp.jason();
             let table = document.getElementById("activeFlightsTable")
-
             for (let element of json) {
                 let tr = table.insertRow(-1);
                 for (let key in elements){
