@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-    <head>
-        <title>Registration Form</title>
-    </head>
-    <body>
-        <h1>Please fill in the following fields to create an account</h1>
-        <form method="post" action="http://localhost:8080/Project-1/register">
-        <label for="first_name">First Name: </label for="first_name"><br>
-        <input type="text" name="first_name" required/><br>
-        <label for="last_name">Last Name: </label><br>
-        <input type="text" name="last_name" required/><br>
-        <label for="user_name">User Name: </label><br>
-        <input type="text" name="user_name" required/><br>
-        <label for="password">Password: </label><br>
-        <input type="password" name="password" required/><br><br>
-        <input type="submit" value="Submit" /><br><br>
-        <input type="reset" value="Reset" />
-        </form>
-    </body>
-=======
-
 <head>
     <meta charset="utf-8">
     <title>Registration Form</title>
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 
 <body>
     <h1>Please fill in the following fields to create an account</h1>
-    <form method="post" action="http://localhost:8080/Project-1/register">
+    <form id="registerForm">
 
         <label class="labels" for="first_name">First Name: </label><br>
-        <input type="text" name="first_name" required /><br>
+        <input type="text" name="first_name" id="first_name" required /><br>
 
         <label class="labels" for="last_name">Last Name: </label><br>
-        <input type="text" name="last_name" required /><br>
+        <input type="text" name="last_name" id="last_name" required /><br>
 
         <label class="labels" for="user_name">User Name: </label><br>
-        <input type="text" name="user_name" required /><br>
+        <input type="text" name="user_name" id="user_name" required /><br>
 
         <label class="labels" for="password">Password: </label><br>
-        <input type="password" name="password" required /><br><br>
+        <input type="password" name="password" id="password" required /><br><br>
 
-        <input class="button" type="submit" value="Submit" /><br><br>
+        <button type="submit">Submit</button><br><br>
 
-        <input class="button" type="reset" value="Reset" />
+        <button type="reset">Reset</button>
     </form>
-</body>
 
->>>>>>> 5c119192d336c1334cc8d23e524a2dfb9d73e167
+    <script>
+        const form = document.getElementById("registerForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            console.log(first_name.value);
+            console.log(last_name.value);
+            console.log(user_name.value);
+            console.log(password.value);
+            submitForm(first_name.value, last_name.value, user_name.value, password.value);
+        });
+
+        async function submitForm(fNameValue, lNameValue, userValue, passValue) {
+            let formObject = {
+                first_name: fNameValue,
+                last_name: lNameValue,
+                user_name: userValue,
+                password: passValue,
+                role: 1
+            }
+
+            console.log(formObject);
+
+            let response = await fetch("http://localhost:8080/Project-1/register", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(formObject)
+            });
+        }
+    </script>
+</body>
 </html>
