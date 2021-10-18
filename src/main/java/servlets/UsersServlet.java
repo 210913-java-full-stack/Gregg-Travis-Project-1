@@ -36,8 +36,8 @@ public class UsersServlet extends HttpServlet {
         checkUser = UserService.getUserByUserPass(payload.getUserName(), payload.getPass());
         if (checkUser != null) {
             //return UserModel to website using JSON
-        }
-        else {
+        } else {
             //Return message stating "Username/Password Combination Not Valid"
+        }
     }
 }
