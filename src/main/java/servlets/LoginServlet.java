@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String user = req.getParameter("user_name");
         String pass = req.getParameter("password");
         boolean role;
