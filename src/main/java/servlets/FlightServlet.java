@@ -1,6 +1,9 @@
 package servlets;
 
 import models.FlightsModel;
+import services.FlightService;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AddFlightServlet extends HttpServlet {
+public class FlightServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -33,5 +36,12 @@ public class AddFlightServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.println(newFlight.getOrigin() + ", " + newFlight.getDestination() +", " + newFlight.getFlightNumber() + ", "
                 + newFlight.getBegin() + ", " + newFlight.getEnd());
+    }
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int flightNumber = Integer.parseInt(req.getParameter("flight_number"));
+        FlightService.deleteFlight(flightNumber);
+
+        resp.setStatus(200);
     }
 }

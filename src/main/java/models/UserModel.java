@@ -20,13 +20,14 @@ public class UserModel {
     @Column (name = "first_name")
     private String fName;
 
-    @Column (name = "last_name;")
+    @Column (name = "last_name")
     private String lName;
 
     @Column
     private int role;
 
     //Sign-in Constructor
+    public UserModel() {}
 
     public UserModel(String user_name, String pass, int role) {
         this.userName = user_name;
@@ -36,11 +37,11 @@ public class UserModel {
 
     //Register constructor
 
-    public UserModel(String user_name, String pass, String firstName, String lastName, int role) {
-        this.userName = user_name;
+    public UserModel(String userName, String pass, String fName, String lName, int role) {
+        this.userName = userName;
         this.pass = pass;
-        this.fName = firstName;
-        this.lName = lastName;
+        this.fName = fName;
+        this.lName = lName;
         this.role = role;
     }
 

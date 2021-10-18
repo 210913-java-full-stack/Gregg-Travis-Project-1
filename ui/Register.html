@@ -41,16 +41,16 @@
 
         async function submitForm(fNameValue, lNameValue, userValue, passValue) {
             let formObject = {
-                first_name: fNameValue,
-                last_name: lNameValue,
-                user_name: userValue,
-                password: passValue,
+                userName: userValue,
+                pass: passValue,
+                fName: fNameValue,
+                lName: lNameValue,
                 role: 1
             }
 
             console.log(formObject);
 
-            let response = await fetch("http://localhost:8080/Project-1/register", {
+            let response = await fetch("http://localhost:8080/Project-1/users", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(formObject)

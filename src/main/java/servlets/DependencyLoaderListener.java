@@ -2,6 +2,7 @@ package servlets;
 
 import models.UserModel;
 import org.hibernate.cfg.Configuration;
+import services.FlightService;
 import services.UserService;
 
 import javax.servlet.ServletContextEvent;
@@ -13,6 +14,7 @@ public class DependencyLoaderListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         Configuration config = new Configuration();
         config.addAnnotatedClass(UserModel.class);
+        config.addAnnotatedClass(FlightServlet.class);
         UserService.setSessionFactory(config.buildSessionFactory());
         UserService.setSession(UserService.getSessionFactory().openSession());
     }

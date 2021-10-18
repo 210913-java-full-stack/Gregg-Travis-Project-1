@@ -1,12 +1,32 @@
 package models;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="flights")
 public class FlightsModel {
-    private String origin, destination, status;
+
+    @Id
+    @Column (name = "flight_number")
     private int flightNumber;
-    private Date begin, end;
-    private boolean checkIn;
+
+    @Column
+    private String origin;
+
+    @Column
+    private String destination;
+
+    @Column
+    private String status;
+
+    @Column
+    private Date begin;
+
+    @Column
+    private Date end;
+
+    public FlightsModel() {}
 
     public FlightsModel(int fn) {
         this.flightNumber = fn;
@@ -54,9 +74,7 @@ public class FlightsModel {
         this.flightNumber = flightNumber;
     }
 
-    public Date getBegin() {
-        return begin;
-    }
+    public Date getBegin() { return begin; }
 
     public void setBegin(Date begin) {
         this.begin = begin;
@@ -68,13 +86,5 @@ public class FlightsModel {
 
     public void setEnd(Date end) {
         this.end = end;
-    }
-
-    public boolean isCheckIn() {
-        return checkIn;
-    }
-
-    public void setCheckIn(boolean checkIn) {
-        this.checkIn = checkIn;
     }
 }
