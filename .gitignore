@@ -4,6 +4,6 @@
 
 .idea/
 target/
-
+*.cfg.xml
 *.properties
 *.iml
