@@ -28,15 +28,12 @@ public class UserService {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<UserModel> query = builder.createQuery(UserModel.class);
         Root<UserModel> root = query.from(UserModel.class);
-        query.select(root).where(builder.equal(root.get("user_name"), user));
-        query.select(root).where(builder.equal(root.get("password"), pass));
-        List<UserModel> userList = session.createQuery(query).getResultList();
-        for (UserModel users : userList) {
-            if (users.getUserName().equals(user) && users.getPass().equals(pass))
-                checkUser = session.get(UserModel.class, user);
-            else
-                checkUser = null;
-        }
+        query.select(root).where(
+                builder.and(
+                    builder.equal(root.get("user_name"), user),
+                    builder.equal(root.get("password"), pass)));
+        //query.select(root).where(builder.equal(root.get("password"), pass));
+        checkUser = session.createQuery(query).getSingleResult();
         return checkUser;
     }
 
