@@ -1,28 +1,56 @@
 package models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="users")
 public class UserModel {
+
+    @Id
+    @Column (name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column (name = "user_name")
     private String userName;
+
+    @Column (name = "password")
     private String pass;
-    private String firstName;
-    private String lastName;
-    private boolean role;
+
+    @Column (name = "first_name")
+    private String fName;
+
+    @Column (name = "last_name")
+    private String lName;
+
+    @Column
+    private int role;
 
     //Sign-in Constructor
+    public UserModel() {}
 
-    public UserModel(String userName, String pass, boolean role) {
-        this.userName = userName;
+    public UserModel(String user_name, String pass, int role) {
+        this.userName = user_name;
         this.pass = pass;
         this.role = role;
     }
 
     //Register constructor
 
-    public UserModel(String userName, String pass, String firstName, String lastName, boolean role) {
+    public UserModel(String userName, String pass, String fName, String lName, int role) {
         this.userName = userName;
         this.pass = pass;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fName = fName;
+        this.lName = lName;
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -41,27 +69,27 @@ public class UserModel {
         this.pass = pass;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getfName() {
+        return fName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setfName(String firstName) {
+        this.fName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getlName() {
+        return lName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setlName(String lastName) {
+        this.lName = lastName;
     }
 
-    public boolean isRole() {
+    public int isRole() {
         return role;
     }
 
-    public void setRole(boolean role) {
+    public void setRole(int role) {
         this.role = role;
     }
 }

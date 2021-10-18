@@ -7,23 +7,42 @@
 
 <body>
     <h1>Please sign-in to use this terminal</h1>
-    <form method="post" action="http://localhost:8080/Project-1/login">
+    <form>
         <label for="user_name">User Name: </label><br>
         <input type="text" id="user_name" required /><br>
         <label for="password">Password: </label><br>
         <input type="text" id="password" required /><br><br>
         <label for="role">Select Your Role: </label><br>
         <select name="role">
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-        </select>
-        <br><br>
-        <input type="submit" value="Submit" /><br><br>
+            <option value="1">User</option><br><br>
         <input type="reset" value="Reset" /><br><br>
     </form>
 
     <a href="Register.html">Need to Register an account? Click here</a>
 
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const data = new FormData(event.target);
+
+            const toDoItem = Object.fromEntries(data.entries());
+
+            console.log({toDoItem});
+            asyncFunc();
+        }
+        async function asyncFunc(toDoItem) {
+            let response = await fetch("http://localhost:8080/Project-1/login", {
+                method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+        body:JSON.stringify(toDoItem)
+    });
+            }
+        const form = document.querySelector('form');
+        form.addEventListener('submit', handleSubmit);
+    </script>
 
 </body>
 
