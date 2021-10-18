@@ -37,6 +37,7 @@ public class UsersServlet extends HttpServlet {
         if (checkUser != null) {
             //return UserModel to website using JSON
         } else {
+            resp.setStatus(406);
             //Return message stating "Username/Password Combination Not Valid"
         }
     }
