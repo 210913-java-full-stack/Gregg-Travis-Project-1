@@ -24,15 +24,14 @@ public class UserService {
 
     //read methods
     public static UserModel getUserByUserPass(String user, String pass) {
-        UserModel checkUser = new UserModel();
+        UserModel checkUser;
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<UserModel> query = builder.createQuery(UserModel.class);
         Root<UserModel> root = query.from(UserModel.class);
         query.select(root).where(
                 builder.and(
-                    builder.equal(root.get("user_name"), user),
-                    builder.equal(root.get("password"), pass)));
-        //query.select(root).where(builder.equal(root.get("password"), pass));
+                    builder.equal(root.get("userName"), user),
+                    builder.equal(root.get("pass"), pass)));
         checkUser = session.createQuery(query).getSingleResult();
         return checkUser;
     }
