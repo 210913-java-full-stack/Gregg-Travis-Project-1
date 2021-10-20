@@ -8,20 +8,52 @@
 </head>
 <body>
     <h1>Add a Flight here</h1>
-    <form method="post" action="http://localhost:8080/Project-1/add-flight">
+    <form id="addFlight">
         <label for="origin">Origin City: </label><br>
-        <input type="text" name="origin" required/><br>
+        <input type="text" name="origin" id="originCity" required/><br>
         <label for="destination">Destination: </label><br>
-        <input type="text" name="destination" required/><br>
+        <input type="text" name="destination" id="destination" required/><br>
         <label for="start_time">Start Date/Time: </label><br>
-        <input type="datetime-local" name="start_time" required/><br>
+        <input type="datetime-local" name="start_time" id="start_time" required/><br>
         <label for="end_time">End Date/Time: </label><br>
-        <input type="datetime-local" name="end_time" required/><br>
+        <input type="datetime-local" name="end_time" id="end_time" required/><br>
         <label for="flight_number">Flight Number: </label><br>
-        <input type="number" name="flight_number" min="100" value="100" required/><br><br>
+        <input type="number" name="flight_number" min="100" value="100" id="flight_number" required/><br><br>
         <input type="submit" value="Submit" /><br><br>
         <input type="reset" value="Reset" />
     </form> 
     
+    <script>
+        const form = document.getElementById("addFlight");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            console.log(originCity.value);
+            console.log(destination.value);
+            console.log(start_time.value);
+            console.log(end_time.value);
+            console.log(flight_number.value);
+            submitForm(originCity.value, destination.value, start_time.value, end_time.value, flight_number.value);
+         });
+
+        async function submitForm(originCityValue, destinationValue, sTimeValue, eTimeValue, fNumberValue) {
+            let formObject = {
+                origin: originCityValue,
+                destination: destinationValue,
+                start_time: sTimeValue,
+                end_time: eTimeValue,
+                flight_number: fNumberValue
+            }
+
+            console.log(formObject);
+
+            let response = await fetch("http://localhost:8080/Project-1/flights", {
+                method: "POST",
+                headers: {"Content-Type": "application/json",
+                         "Method": "addFlight"},
+                body: JSON.stringify(formObject)
+            });
+        }
+    </script>
 </body>
 </html>

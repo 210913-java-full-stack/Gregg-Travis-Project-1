@@ -40,4 +40,20 @@ public class FlightService {
         FlightsModel flight = new FlightsModel(fn);
         session.delete(fn);
     }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void setSessionFactory(SessionFactory sessionFactory) {
+        FlightService.sessionFactory = sessionFactory;
+    }
+
+    public static Session getSession() {
+        return session;
+    }
+
+    public static void setSession(Session session) {
+        FlightService.session = session;
+    }
 }

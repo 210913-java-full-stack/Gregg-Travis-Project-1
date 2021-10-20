@@ -8,30 +8,29 @@ public class TicketsModel {
     @Id
     @Column (name="ticket_number")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ticketNumber;
+    private Integer ticketNumber;
 
     @Column (name="user_name")
     private String userName;
 
     @Column (name="flight_number")
-    private int flightNumber;
+    private Integer flightNumber;
 
-    @Column (name="checked_in")
-    private boolean isCheckedIn;
+
 
     public TicketsModel() {}
 
-    public TicketsModel(String userName, int flightNumber) {
+    public TicketsModel(String userName, Integer flightNumber) {
         this.userName = userName;
         this.flightNumber = flightNumber;
-        this.isCheckedIn = false;
+        //this.isCheckedIn = false;
     }
 
-    public int getTicketNumber() {
+    public Integer getTicketNumber() {
         return ticketNumber;
     }
 
-    public void setTicketNumber(int ticketNumber) {
+    public void setTicketNumber(Integer ticketNumber) {
         this.ticketNumber = ticketNumber;
     }
 
@@ -43,11 +42,11 @@ public class TicketsModel {
         this.userName = userName;
     }
 
-    public int getFlightNumber() {
+    public Integer getFlightNumber() {
         return flightNumber;
     }
 
-    public void setFlightNumber(int flightNumber) {
+    public void setFlightNumber(Integer flightNumber) {
         this.flightNumber = flightNumber;
     }
 }
