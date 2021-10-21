@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class TicketsService {
-    private static SessionFactory sessionFactory;
+    //private static SessionFactory sessionFactory;
     private static Session session;
 
     public static void addTicket(TicketsModel ticket) {
@@ -24,6 +24,27 @@ public class TicketsService {
         TicketsModel ticket = new TicketsModel(tn);
         session.delete(ticket);
     }
+
+    //write a method to pull the record by username
+    //update the object received by setting the setter to true
+    //This should cause the database to update automagically possibly by session.flush
+
+    /**
+     * This method pulls a unique ticket model object by username, and then sets that
+     * object's checkin value to true, indicating the ticket holder is present and boarding.
+     * @param user
+     */
+    public static void checkInByUserName(String user) {
+        TicketsModel getTicket;
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<TicketsModel> query = builder.createQuery(TicketsModel.class);
+        Root<TicketsModel> root = query.from(TicketsModel.class);
+        query.select(root).where(builder.equal(root.get("userName"), user));
+        getTicket = session.createQuery(query).getSingleResult();
+        getTicket.setCheckIn(true);
+        session.flush();
+    }
+
 
     public static List<TicketsModel> getAllTickets() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
