@@ -35,6 +35,10 @@ public class FlightService {
         return session.createQuery(query).getResultList();
     }
 
+    //update method
+    public static void CheckInUserByFlightNumber (int fn) {
+    }
+
     //delete method
     public static void deleteFlight(int fn) {
         FlightsModel flight = new FlightsModel(fn);

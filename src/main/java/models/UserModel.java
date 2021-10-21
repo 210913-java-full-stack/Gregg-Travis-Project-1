@@ -1,7 +1,5 @@
 package models;
 
-import org.hibernate.engine.internal.Cascade;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -29,8 +27,8 @@ public class UserModel {
     @Column
     private Integer role;
 
-    @Column (name="checked_in")
-    private boolean isCheckedIn;
+//    @Column (name="checked_in")
+//    private boolean isCheckedIn;
 
     //What we need here: We need to associate users with the flights they will take
     @ManyToMany
@@ -54,7 +52,6 @@ public class UserModel {
         this.fName = fName;
         this.lName = lName;
         this.role = role;
-        this.isCheckedIn = false;
     }
 
     public Integer getId() {

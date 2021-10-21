@@ -45,4 +45,14 @@
         <servlet-name>flightServlet</servlet-name>
         <url-pattern>/flights</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ticketsServlet</servlet-name>
+        <servlet-class>servlets.TicketsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ticketsServlet</servlet-name>
+        <url-pattern>/tickets</url-pattern>
+    </servlet-mapping>
 </web-app>

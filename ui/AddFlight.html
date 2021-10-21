@@ -28,11 +28,6 @@
 
         form.addEventListener("submit", function(event) {
             event.preventDefault();
-            console.log(originCity.value);
-            console.log(destination.value);
-            console.log(start_time.value);
-            console.log(end_time.value);
-            console.log(flight_number.value);
             submitForm(originCity.value, destination.value, start_time.value, end_time.value, flight_number.value);
          });
 
@@ -40,12 +35,11 @@
             let formObject = {
                 origin: originCityValue,
                 destination: destinationValue,
-                start_time: sTimeValue,
-                end_time: eTimeValue,
-                flight_number: fNumberValue
+                start: sTimeValue,
+                end: eTimeValue,
+                flightNumber: fNumberValue,
+                status: "Pre-Flight"
             }
-
-            console.log(formObject);
 
             let response = await fetch("http://localhost:8080/Project-1/flights", {
                 method: "POST",
