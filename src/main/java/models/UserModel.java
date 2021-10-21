@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -9,7 +10,7 @@ public class UserModel {
     @Id
     @Column (name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column (name = "user_name")
     private String userName;
@@ -24,12 +25,20 @@ public class UserModel {
     private String lName;
 
     @Column
-    private int role;
+    private Integer role;
+
+    @Column (name="checked_in")
+    private boolean isCheckedIn;
+
+    //What we need here: We need to associate users with the flights they will take
+    @ManyToMany
+    private List<FlightsModel> flights;
+
 
     //Sign-in Constructor
     public UserModel() {}
 
-    public UserModel(String user_name, String pass, int role) {
+    public UserModel(String user_name, String pass, Integer role) {
         this.userName = user_name;
         this.pass = pass;
         this.role = role;
@@ -37,19 +46,20 @@ public class UserModel {
 
     //Register constructor
 
-    public UserModel(String userName, String pass, String fName, String lName, int role) {
+    public UserModel(String userName, String pass, String fName, String lName, Integer role) {
         this.userName = userName;
         this.pass = pass;
         this.fName = fName;
         this.lName = lName;
         this.role = role;
+        this.isCheckedIn = false;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -85,11 +95,11 @@ public class UserModel {
         this.lName = lastName;
     }
 
-    public int isRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 }

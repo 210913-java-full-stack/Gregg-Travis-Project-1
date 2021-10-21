@@ -1,44 +1,51 @@
 package servlets;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import models.FlightsModel;
 import services.FlightService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Scanner;
 
 public class FlightServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String origin = req.getParameter("origin");
-        String dest = req.getParameter("destination");
-        int flightNumber = Integer.parseInt(req.getParameter("flight_number"));
-        Date begin = new Date();
-        Date end = new Date();
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            begin = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(req.getParameter("start_time"));
-            end = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(req.getParameter("end_time"));
-            System.out.println(begin);
-            System.out.println(end);
-        } catch (ParseException e) {
+            InputStream requestBody = req.getInputStream();
+            String requestHeader = req.getHeader("Method");
+            Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+            FlightsModel payload = mapper.readValue(jsonText, FlightsModel.class);
+            switch (requestHeader) {
+                case "addFlight":
+                    FlightService.addFlight(payload);
+                    break;
+                case "login":
+                    List<FlightsModel> FlightList = FlightService.getAllFlights(payload.getUserName());
+                    if (FlightList != null) {
+                        String json = mapper.writeValueAsString(FlightList);
+                        resp.setStatus(202);
+                        resp.getWriter().print(json);
+                    } else {
+                        resp.setStatus(406);
+                    }
+                    break;
+            }
+        } catch(IOException e) {
             e.printStackTrace();
+            //TODO: Replace me with file logging!
         }
-
-        FlightsModel newFlight = new FlightsModel(origin, dest, flightNumber, begin, end);
-
-        PrintWriter out = resp.getWriter();
-        out.println(newFlight.getOrigin() + ", " + newFlight.getDestination() +", " + newFlight.getFlightNumber() + ", "
-                + newFlight.getBegin() + ", " + newFlight.getEnd());
     }
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         int flightNumber = Integer.parseInt(req.getParameter("flight_number"));
         FlightService.deleteFlight(flightNumber);
 

@@ -27,11 +27,11 @@ public class FlightService {
      return null;
     }
 
-    public static List<FlightsModel> getAllFlights() {
+    public static List<FlightsModel> getAllFlights(String user) {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<FlightsModel> query = builder.createQuery(FlightsModel.class);
         Root<FlightsModel> root = query.from(FlightsModel.class);
-        query.select(root);
+        query.select(root).where(builder.equal(root.get("userName"), user));
         return session.createQuery(query).getResultList();
     }
 
@@ -39,5 +39,21 @@ public class FlightService {
     public static void deleteFlight(int fn) {
         FlightsModel flight = new FlightsModel(fn);
         session.delete(fn);
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void setSessionFactory(SessionFactory sessionFactory) {
+        FlightService.sessionFactory = sessionFactory;
+    }
+
+    public static Session getSession() {
+        return session;
+    }
+
+    public static void setSession(Session session) {
+        FlightService.session = session;
     }
 }

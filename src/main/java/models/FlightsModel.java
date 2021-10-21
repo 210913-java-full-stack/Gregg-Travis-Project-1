@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="flights")
@@ -9,7 +10,10 @@ public class FlightsModel {
 
     @Id
     @Column (name = "flight_number")
-    private int flightNumber;
+    private Integer flightNumber;
+
+    @Column (name="user_name")
+    private String userName;
 
     @Column
     private String origin;
@@ -21,23 +25,32 @@ public class FlightsModel {
     private String status;
 
     @Column
-    private Date begin;
+    private Date start;
 
     @Column
     private Date end;
 
+    //what we need here: We need to associate this flight with all passengers.
+    @ManyToMany
+    @JoinTable(
+            name="flights_passengers",
+            joinColumns = @JoinColumn(name="flights"),
+            inverseJoinColumns = @JoinColumn(name="passengers")
+    )
+    private List<UserModel> passengers;
+
     public FlightsModel() {}
 
-    public FlightsModel(int fn) {
+    public FlightsModel(Integer fn) {
         this.flightNumber = fn;
     }
 
 
-    public FlightsModel(String origin, String destination, int flightNumber, Date begin, Date end) {
+    public FlightsModel(String origin, String destination, Integer flightNumber, Date begin, Date end) {
         this.origin = origin;
         this.destination = destination;
         this.flightNumber = flightNumber;
-        this.begin = begin;
+        this.start = begin;
         this.end = end;
         this.status = "Pre-Flight";
     }
@@ -66,18 +79,18 @@ public class FlightsModel {
         this.destination = destination;
     }
 
-    public int getFlightNumber() {
+    public Integer getFlightNumber() {
         return flightNumber;
     }
 
-    public void setFlightNumber(int flightNumber) {
+    public void setFlightNumber(Integer flightNumber) {
         this.flightNumber = flightNumber;
     }
 
-    public Date getBegin() { return begin; }
+    public Date getStart() { return start; }
 
-    public void setBegin(Date begin) {
-        this.begin = begin;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
     public Date getEnd() {
@@ -86,5 +99,13 @@ public class FlightsModel {
 
     public void setEnd(Date end) {
         this.end = end;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

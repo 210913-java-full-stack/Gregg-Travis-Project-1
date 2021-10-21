@@ -1,49 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log-In Form</title>
 </head>
 
 <body>
     <h1>Please sign-in to use this terminal</h1>
-    <form>
+    <form id="signInForm">
         <label for="user_name">User Name: </label><br>
-        <input type="text" id="user_name" required /><br>
+        <input type="text" name="user_name" id="user_name" required /><br>
         <label for="password">Password: </label><br>
-        <input type="text" id="password" required /><br><br>
-        <label for="role">Select Your Role: </label><br>
-        <select name="role">
-            <option value="1">User</option><br><br>
+        <input type="password" id="password" required /><br><br>
+        <button type="submit">Submit</button><br><br>
         <input type="reset" value="Reset" /><br><br>
     </form>
 
     <a href="Register.html">Need to Register an account? Click here</a>
 
     <script>
-        function handleSubmit(event) {
+        const form = document.getElementById("signInForm");
+
+        form.addEventListener("submit", function(event) {
             event.preventDefault();
+            console.log(user_name.value);
+            console.log(password.value);
+            TestResponse(user_name.value, password.value);
+        });
 
-            const data = new FormData(event.target);
-
-            const toDoItem = Object.fromEntries(data.entries());
-
-            console.log({toDoItem});
-            asyncFunc();
-        }
-        async function asyncFunc(toDoItem) {
-            let response = await fetch("http://localhost:8080/Project-1/login", {
-                method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-        body:JSON.stringify(toDoItem)
-    });
+        async function TestResponse(userValue, passValue) {
+            let formObject = {
+                userName: userValue,
+                pass: passValue
             }
-        const form = document.querySelector('form');
-        form.addEventListener('submit', handleSubmit);
+
+            console.log(formObject);
+
+            let response = await fetch("http://localhost:8080/Project-1/users", {
+                method: "POST",
+                headers: {"Content-Type": "application/json",
+                         "Method": "login"},
+                body: JSON.stringify(formObject)
+
+            });
+
+            //continue here, use the response object
+            
+            console.log(response);//do a fact finding explatory console mission
+            let object = response.json();//this parses the body assuming it's json, and returns a javascript object(
+            console.log(object);
+            let statusCode = response.status;
+           if(statusCode === 406) {
+               alert("User Name/Password combination not found! Please try again");
+           } else if(statusCode === 202) {
+                window.location.href = "UserDashboard.html?userName=" + userValue;
+
+           }
+        }
     </script>
-
 </body>
-
 </html>
