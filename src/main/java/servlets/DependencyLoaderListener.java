@@ -1,7 +1,6 @@
 package servlets;
 
 import models.FlightsModel;
-import models.TicketsModel;
 import models.UserModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +17,7 @@ public class DependencyLoaderListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         Configuration config = new Configuration();
         config.addAnnotatedClass(UserModel.class);
-        config.addAnnotatedClass(FlightsModel.class);
+        //config.addAnnotatedClass(FlightsModel.class);
 //        config.addAnnotatedClass(TicketsModel.class);
         SessionFactory sessionFactory = config.buildSessionFactory();
         Session session = sessionFactory.openSession();
