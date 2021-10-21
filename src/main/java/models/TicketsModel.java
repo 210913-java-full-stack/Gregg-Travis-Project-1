@@ -16,14 +16,21 @@ public class TicketsModel {
     @Column (name="flight_number")
     private Integer flightNumber;
 
+    @Column (name="checked_in")
+    private boolean checkIn;
+
 
 
     public TicketsModel() {}
 
+    public TicketsModel(Integer flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
     public TicketsModel(String userName, Integer flightNumber) {
         this.userName = userName;
         this.flightNumber = flightNumber;
-        //this.isCheckedIn = false;
+        this.checkIn = false;
     }
 
     public Integer getTicketNumber() {
@@ -48,5 +55,13 @@ public class TicketsModel {
 
     public void setFlightNumber(Integer flightNumber) {
         this.flightNumber = flightNumber;
+    }
+
+    public boolean isCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(boolean checkIn) {
+        this.checkIn = checkIn;
     }
 }

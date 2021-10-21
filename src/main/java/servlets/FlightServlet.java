@@ -28,22 +28,23 @@ public class FlightServlet extends HttpServlet {
                 case "addFlight":
                     FlightService.addFlight(payload);
                     break;
-                case "login":
-                    List<FlightsModel> FlightList = FlightService.getAllFlights(payload.getUserName());
-                    if (FlightList != null) {
-                        String json = mapper.writeValueAsString(FlightList);
-                        resp.setStatus(202);
-                        resp.getWriter().print(json);
-                    } else {
-                        resp.setStatus(406);
-                    }
-                    break;
+
             }
         } catch(IOException e) {
             e.printStackTrace();
             //TODO: Replace me with file logging!
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<FlightsModel> FlightList = FlightService.getAllFlights();
+        String json = mapper.writeValueAsString(FlightList);
+        resp.setStatus(202);
+        resp.getWriter().print(json);
+    }
+
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         int flightNumber = Integer.parseInt(req.getParameter("flight_number"));
