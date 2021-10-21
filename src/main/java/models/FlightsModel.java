@@ -25,7 +25,7 @@ public class FlightsModel {
     private String status;
 
     @Column
-    private Date begin;
+    private Date start;
 
     @Column
     private Date end;
@@ -50,7 +50,7 @@ public class FlightsModel {
         this.origin = origin;
         this.destination = destination;
         this.flightNumber = flightNumber;
-        this.begin = begin;
+        this.start = begin;
         this.end = end;
         this.status = "Pre-Flight";
     }
@@ -87,10 +87,10 @@ public class FlightsModel {
         this.flightNumber = flightNumber;
     }
 
-    public Date getBegin() { return begin; }
+    public Date getStart() { return start; }
 
-    public void setBegin(Date begin) {
-        this.begin = begin;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
     public Date getEnd() {

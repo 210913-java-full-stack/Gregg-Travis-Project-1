@@ -27,11 +27,11 @@ public class FlightService {
      return null;
     }
 
-    public static List<FlightsModel> getAllFlights() {
+    public static List<FlightsModel> getAllFlights(String user) {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<FlightsModel> query = builder.createQuery(FlightsModel.class);
         Root<FlightsModel> root = query.from(FlightsModel.class);
-        query.select(root);
+        query.select(root).where(builder.equal(root.get("userName"), user));
         return session.createQuery(query).getResultList();
     }
 
