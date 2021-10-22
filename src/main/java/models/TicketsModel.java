@@ -10,7 +10,7 @@ public class TicketsModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ticketNumber;
 
-    @Column (name="user_name", unique = true)
+    @Column (name="user_name")
     private String userName;
 
     @Column (name="flight_number")
