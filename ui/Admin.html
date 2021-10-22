@@ -43,7 +43,7 @@
   </div>
 
   <script>
-    var form = document.getElementById("addFlight");
+    const form = document.getElementById("addFlight");
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -86,7 +86,7 @@
       let resp = await fetch(
         "http://localhost:8080/Project-1/active-passengers"
       );
-      let json = await resp.json();
+      let json = await resp.jason();
       let table = document.getElementById("activePassengersTable");
 
       for (let element of json) {
@@ -111,16 +111,17 @@
         }
       }
     }
-    var form = document.getElementById("cancelFlight");
 
-    form.addEventListener("submit", function (event) {
+    const cancelForm = document.getElementById("cancelFlight");
+
+    cancelForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      submitForm(
+      submitForm2(
         flightNumber.value
       );
     });
 
-    async function submitForm() {
+    async function submitForm2() {
       let formObject = {
         flightNumber: flightNumber.value,
       };

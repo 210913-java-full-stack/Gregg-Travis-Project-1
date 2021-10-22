@@ -30,7 +30,7 @@ public class FlightServlet extends HttpServlet {
                     FlightService.addFlight(payload);
                     break;
                 case "cancelFlight":
-                    System.out.println("DEBUG: 2nd");
+                    System.out.println("DEBUG: flightSe");
                     System.out.println(payload.getFlightNumber());
                     FlightService.deleteFlight(payload.getFlightNumber());
                     break;
