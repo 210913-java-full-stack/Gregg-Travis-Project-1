@@ -21,7 +21,13 @@ public class TicketsService {
     }
 
     public static void deleteTicket(Integer tn) {
-        TicketsModel ticket = new TicketsModel(tn);
+        TicketsModel ticket;
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<TicketsModel> query = builder.createQuery(TicketsModel.class);
+        Root<TicketsModel> root = query.from(TicketsModel.class);
+        query.select(root).where(builder.equal(root.get("ticketNumber"), tn));
+        ticket = session.createQuery(query).getSingleResult();
+        System.out.println(ticket.getTicketNumber() + ", " + ticket.getFlightNumber() + ", " + ticket.isCheckIn());
         session.delete(ticket);
     }
 
@@ -39,10 +45,15 @@ public class TicketsService {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketsModel> query = builder.createQuery(TicketsModel.class);
         Root<TicketsModel> root = query.from(TicketsModel.class);
-        query.select(root).where(builder.equal(root.get("userName"), user));
+        query.select(root).where(
+                builder.and(
+                        builder.equal(root.get("userName"), user),
+                        builder.equal(root.get("ticketNumber"), tn)));
         getTicket = session.createQuery(query).getSingleResult();
         getTicket.setCheckIn(true);
-        session.flush();
+        Transaction tx = session.beginTransaction();
+        session.save(getTicket);
+        tx.commit();
     }
 
 
