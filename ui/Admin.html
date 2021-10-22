@@ -116,16 +116,19 @@
 
     cancelForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      submitForm2(
+      cancelForm2(
+
         flightNumber.value
       );
     });
 
-    async function submitForm2() {
+
+    async function cancelForm2() {
+
       let formObject = {
         flightNumber: flightNumber.value,
       };
-      console.log(formObject);
+      console.log("cancel form reached");
       let resp = await fetch("http://localhost:8080/Project-1/flights", {
         method: "POST",
         headers: {

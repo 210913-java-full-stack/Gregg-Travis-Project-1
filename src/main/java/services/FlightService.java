@@ -1,9 +1,11 @@
 package services;
 
 import models.FlightsModel;
+import models.TicketsModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -49,11 +51,15 @@ public class FlightService {
 
     //delete method
     public static void deleteFlight(int fn) {
-        Transaction trans =session.beginTransaction();
-        FlightsModel flight = new FlightsModel(fn);
-        System.out.println("DEBUG: stopped @ service layer");
-        session.delete(flight);
-        trans.commit();
+        session.beginTransaction();
+        FlightsModel getFlight;
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<FlightsModel> query = builder.createQuery(FlightsModel.class);
+        Root<FlightsModel> root = query.from(FlightsModel.class);
+        query.select(root).where(builder.equal(root.get("flightNumber"), fn));
+        getFlight = session.createQuery(query).getSingleResult();
+        session.delete(getFlight);
+        session.getTransaction().commit();
         //Query query = SessionHolder.getSession().createQuery("DELETE Flight WHERE flightNumber = :flightNumber");
         //query.setParameter("flightNumber", flightNumber);
         //int result = query.executeUpdate(); ----> this will work!
