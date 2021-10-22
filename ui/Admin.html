@@ -43,7 +43,7 @@
   </div>
 
   <script>
-    var form = document.getElementById("addFlight");
+    const form = document.getElementById("addFlight");
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -111,20 +111,20 @@
         }
       }
     }
-    var form = document.getElementById("cancelFlight");
+    const cancelForm = document.getElementById("cancelFlight");
 
-    form.addEventListener("submit", function (event) {
+    cancelForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      submitForm(
+      cancelForm2(
         flightNumber.value
       );
     });
 
-    async function submitForm() {
+    async function cancelForm2() {
       let formObject = {
         flightNumber: flightNumber.value,
       };
-      console.log(formObject);
+      console.log("cancel form reached");
       let resp = await fetch("http://localhost:8080/Project-1/flights", {
         method: "POST",
         headers: {

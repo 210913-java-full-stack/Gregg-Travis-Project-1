@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-    <div>
-        <h1>Cancel A Flight</h1>
-        <form id="cancelFlight"
-        >
-          <label for="flight_number">Flight Number: </label><br />
-          <input
-            type="number"
-            name="flight_number"
-            min="100"
-            value="100"
-            id="flightNumber"
-            required
-          /><br /><br />
-          <button type="submit">Cancel Flight</button><br /><br />
-          <button type="reset">Reset</button>
-        </form>
-      </div>
-      <script>
-          
-      </script>
+  <div>
+    <h1>Cancel A Flight</h1>
+    <form id="cancelFlight">
+      <label for="flight_number">Flight Number: </label><br />
+      <input type="number" name="flight_number" min="100" value="100" id="flightNumber" required /><br /><br />
+      <button type="submit">Cancel Flight</button><br /><br />
+      <button type="reset">Reset</button>
+    </form>
+  </div>
+  <script>
+    var form = document.getElementById("cancelFlight");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      submitForm(
+        flightNumber.value
+      );
+    });
+
+    async function submitForm() {
+      let formObject = {
+        flightNumber: flightNumber.value,
+      };
+      console.log(formObject);
+      let resp = await fetch("http://localhost:8080/Project-1/flights", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Method": "cancelFlight"
+        },
+        body: JSON.stringify(formObject),
+      });
+    }
+  </script>
 </body>
+
 </html>
