@@ -34,7 +34,7 @@ public class TicketsService {
      * object's checkin value to true, indicating the ticket holder is present and boarding.
      * @param user
      */
-    public static void checkInByUserName(String user) {
+    public static void checkInByUserName(Integer tn, String user) {
         TicketsModel getTicket;
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketsModel> query = builder.createQuery(TicketsModel.class);
@@ -54,8 +54,11 @@ public class TicketsService {
         return session.createQuery(query).getResultList();
     }
 
-    public static void checkIn(Integer tn) {
-        TicketsModel ticket = new TicketsModel();
-        ticket.setCheckIn(true);
+    public static Session getSession() {
+        return session;
+    }
+
+    public static void setSession(Session session) {
+        TicketsService.session = session;
     }
 }

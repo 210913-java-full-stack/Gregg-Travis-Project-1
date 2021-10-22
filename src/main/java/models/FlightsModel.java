@@ -18,13 +18,10 @@ public class FlightsModel {
     private String destination;
 
     @Column
-    private String status;
+    private String begin;
 
     @Column
-    private Date begin;
-
-    @Column
-    private Date end;
+    private String end;
 
     public FlightsModel() {}
 
@@ -33,21 +30,12 @@ public class FlightsModel {
     }
 
 
-    public FlightsModel(String origin, String destination, int flightNumber, Date begin, Date end) {
+    public FlightsModel(String origin, String destination, int flightNumber, String begin, String end) {
         this.origin = origin;
         this.destination = destination;
         this.flightNumber = flightNumber;
         this.begin = begin;
         this.end = end;
-        this.status = "Pre-Flight";
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getOrigin() {
@@ -74,17 +62,17 @@ public class FlightsModel {
         this.flightNumber = flightNumber;
     }
 
-    public Date getBegin() { return begin; }
+    public String getBegin() { return begin; }
 
-    public void setBegin(Date begin) {
+    public void setBegin(String begin) {
         this.begin = begin;
     }
 
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 }

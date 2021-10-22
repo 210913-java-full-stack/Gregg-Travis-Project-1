@@ -43,7 +43,7 @@ public class TicketsServlet extends HttpServlet {
                 case "removeTicket":
                     TicketsService.deleteTicket(payload.getTicketNumber());
                 case "checkIn":
-                    TicketsService.checkIn(payload.getTicketNumber());
+                    TicketsService.checkInByUserName(payload.getTicketNumber(), payload.getUserName());
             }
         } catch (IOException e) {
             e.printStackTrace();

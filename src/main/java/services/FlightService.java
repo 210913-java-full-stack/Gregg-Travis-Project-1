@@ -8,6 +8,8 @@ import org.hibernate.Transaction;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class FlightService {
@@ -17,6 +19,12 @@ public class FlightService {
     //create method
     public static void addFlight(FlightsModel flight) {
         Transaction trans = session.beginTransaction();
+        String begin = flight.getBegin();
+        String end = flight.getEnd();
+        System.out.println(begin);
+        System.out.println(end);
+//        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//        flight.getBegin().format(myFormatObj);
         session.save(flight);
         trans.commit();
     }
