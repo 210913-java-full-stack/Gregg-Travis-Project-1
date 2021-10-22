@@ -49,8 +49,14 @@ public class FlightService {
 
     //delete method
     public static void deleteFlight(int fn) {
+        Transaction trans =session.beginTransaction();
         FlightsModel flight = new FlightsModel(fn);
-        session.delete(fn);
+        System.out.println("DEBUG: stopped @ service layer");
+        session.delete(flight);
+        trans.commit();
+        //Query query = SessionHolder.getSession().createQuery("DELETE Flight WHERE flightNumber = :flightNumber");
+        //query.setParameter("flightNumber", flightNumber);
+        //int result = query.executeUpdate(); ----> this will work!
     }
 
     public static SessionFactory getSessionFactory() {

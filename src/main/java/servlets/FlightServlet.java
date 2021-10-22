@@ -18,6 +18,7 @@ public class FlightServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try {
+            System.out.println("DEBUG: this is reached 1");
             InputStream requestBody = req.getInputStream();
             String requestHeader = req.getHeader("Method");
             Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
@@ -29,6 +30,8 @@ public class FlightServlet extends HttpServlet {
                     FlightService.addFlight(payload);
                     break;
                 case "cancelFlight":
+                    System.out.println("DEBUG: 2nd");
+                    System.out.println(payload.getFlightNumber());
                     FlightService.deleteFlight(payload.getFlightNumber());
                     break;
 
