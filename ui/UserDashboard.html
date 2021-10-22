@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registered User Page</title>
 </head>
+
 <body>
     <h1> Welcome to your user page</h1>
     <div>
@@ -26,27 +28,97 @@
         </table>
     </div>
 
-    
+    <div>
+        <h2>Select Flight Number to buy a ticket:</h2>
+        <form id="purchaseTicket">
+            <label for="flight_number">Flight Number:</label><br>
+            <input type="number" id="flightNumber">
+            <button type="submit">Buy Ticket</button>
+        </form>
+    </div>
+    <div>
+        <h2>Select Ticket Number to Check-In:</h2>
+        <form id="checkIn">
+            <label for="ticket_number">Ticket Number:</label><br>
+            <input type="number" id="ticketNumber">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
     <script>
         (function getQueryParameters() {
-            let urlParameters = new URLSearchParams(window.location.search);
+            const urlParameters = new URLSearchParams(window.location.search);
             console.log("Query Parameter userName: ", urlParameters.get("userName"));
         })();
 
+        const checkInForm = document.getElementById("checkIn")
+
+        checkInForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            console.log(ticketNumber.value);
+            CheckInResponse(ticketNumber.value);
+        });
+
+        async function CheckInResponse(ticketNumberValue) {
+            let formObject = {
+                userName: urlParameters.get("userName"),
+                ticketNumber: ticketNumberValue
+            }
+
+            console.log(formObject);
+
+            let response = await fetch("http://localhost:8080/Project-1/tickets", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Method": "checkIn"
+                },
+                body: JSON.stringify(formObject)
+            });
+        }
+        const buyTicketForm = document.getElementById("purchaseTicket")
+
+        buyTicketForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            console.log(flightNumber.value);
+            PuchaseTicketResponse(flightNumber.value)
+        });
+
+        async function purchaseTicketResponse(flightNumberValue) {
+            let formObject = {
+                userName: urlParameters.get("userName"),
+                flightNumber: flightNumberValue
+            }
+
+            console.log(formObject);
+
+            let response = await fetch("http://localhost:8080/Project-1/tickets", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Method": "addTicket"
+                },
+                body: JSON.stringify(formObject)
+            });
+        }
+
         (async function getFlights() {
-            let response = await fetch("http://localhost:8080/Project-1/flights");//1 parameter assumes this is a get request
+            let response = await fetch(
+                "http://localhost:8080/Project-1/flights"); //1 parameter assumes this is a get request
             let json = await response.json();
             await populateTable(json);
         })();
 
-        function populateTable(json){
+        function populateTable(json) {
             let table = document.getElementById("FlightsTable");
 
-            for(let element of json) {
+            for (let element of json) {
                 let tr = table.insertRow(-1);
-                for(let key in element) {
+                for (let key in element) {
                     let cell = tr.insertCell(-1);
-                    cell.innerHTML =  element[key];
+                    cell.innerHTML = element[key];
                 }
             }
         }
@@ -54,4 +126,5 @@
 
 
 </body>
+
 </html>
