@@ -44,14 +44,66 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+    <div>
+        <h2>Select Ticket Number to Cancel:</h2>
+        <form id="cancelTicket">
+            <label for="ticket_number">Ticket Number:</label><br>
+            <input type="number" id="ticketNumber">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
 
 
     <script>
-        (function getQueryParameters() {
-            const urlParameters = new URLSearchParams(window.location.search);
-            console.log("Query Parameter userName: ", urlParameters.get("userName"));
+        const urlParameters = new URLSearchParams(window.location.search);
+        console.log("Query Parameter userName: ", urlParameters.get("userName"));
+
+        (async function getFlights() {
+            let response = await fetch(
+                "http://localhost:8080/Project-1/flights"); //1 parameter assumes this is a get request
+            let json = await response.json();
+            await populateTable(json);
         })();
+
+        function populateTable(json) {
+            let table = document.getElementById("FlightsTable");
+
+            for (let element of json) {
+                let tr = table.insertRow(-1);
+                for (let key in element) {
+                    let cell = tr.insertCell(-1);
+                    cell.innerHTML = element[key];
+                }
+            }
+        }
+
+        const buyTicketForm = document.getElementById("purchaseTicket")
+
+        buyTicketForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            console.log(flightNumber.value);
+            console.log(urlParameters.get("username"));
+            PuchaseTicketResponse(flightNumber.value);
+        });
+
+        async function PuchaseTicketResponse(flightNumberValue) {
+            let formObject = {
+                userName: urlParameters.get("userName"),
+                flightNumber: flightNumberValue
+            }
+
+            console.log(formObject);
+
+            let response = await fetch("http://localhost:8080/Project-1/tickets", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Method": "addTicket"
+                },
+                body: JSON.stringify(formObject)
+            });
+        }
 
         const checkInForm = document.getElementById("checkIn")
 
@@ -78,18 +130,19 @@
                 body: JSON.stringify(formObject)
             });
         }
-        const buyTicketForm = document.getElementById("purchaseTicket")
 
-        buyTicketForm.addEventListener("submit", function (event) {
+        const CancelTicketForm = document.getElementById("cancelTicket")
+
+        CancelTicketForm.addEventListener("submit", function (event) {
             event.preventDefault();
-            console.log(flightNumber.value);
-            PuchaseTicketResponse(flightNumber.value)
+            console.log(ticketNumber.value);
+            cancelTicketResponse(ticketNumber.value);
         });
 
-        async function purchaseTicketResponse(flightNumberValue) {
+        async function cancelTicketResponse(ticketNumberValue) {
             let formObject = {
                 userName: urlParameters.get("userName"),
-                flightNumber: flightNumberValue
+                ticketNumber: ticketNumberValue
             }
 
             console.log(formObject);
@@ -98,33 +151,12 @@
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Method": "addTicket"
+                    "Method": "cancelTicket"
                 },
                 body: JSON.stringify(formObject)
             });
         }
-
-        (async function getFlights() {
-            let response = await fetch(
-                "http://localhost:8080/Project-1/flights"); //1 parameter assumes this is a get request
-            let json = await response.json();
-            await populateTable(json);
-        })();
-
-        function populateTable(json) {
-            let table = document.getElementById("FlightsTable");
-
-            for (let element of json) {
-                let tr = table.insertRow(-1);
-                for (let key in element) {
-                    let cell = tr.insertCell(-1);
-                    cell.innerHTML = element[key];
-                }
-            }
-        }
     </script>
-
-
 </body>
 
 </html>
