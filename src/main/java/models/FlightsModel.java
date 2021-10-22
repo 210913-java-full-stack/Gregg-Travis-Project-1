@@ -9,6 +9,7 @@ public class FlightsModel {
 
     @Id
     @Column (name = "flight_number")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int flightNumber;
 
     @Column
