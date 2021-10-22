@@ -28,6 +28,9 @@ public class FlightServlet extends HttpServlet {
                 case "addFlight":
                     FlightService.addFlight(payload);
                     break;
+                case "cancelFlight":
+                    FlightService.deleteFlight(payload.getFlightNumber());
+                    break;
 
             }
         } catch(IOException e) {

@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import services.FlightService;
+import services.HibernateService;
+import services.TicketsService;
 import services.UserService;
 
 import javax.servlet.ServletContextEvent;
@@ -16,15 +18,11 @@ public class DependencyLoaderListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         Configuration config = new Configuration();
-        config.addAnnotatedClass(UserModel.class);
-        //config.addAnnotatedClass(FlightsModel.class);
-//        config.addAnnotatedClass(TicketsModel.class);
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        UserService.setSessionFactory(sessionFactory);//it isn't really necessary to store both session and sessionfactory here
+        Session session = HibernateService.getSession();
         UserService.setSession(session);
-        FlightService.setSessionFactory(sessionFactory);//it isn't really necessary to store both session and sessionfactory here
         FlightService.setSession(session);
+        TicketsService.setSession(session);
+
     }
 
     @Override

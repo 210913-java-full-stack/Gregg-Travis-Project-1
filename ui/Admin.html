@@ -1,60 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AdminFlightPage</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div>
+      <h1>Schedule A New Flight</h1>
+      <form id="addFlight">
+        <label for="origin">Origin City: </label><br />
+        <input type="text" name="origin" id="originCity" required /><br />
 
-<div>
-    <h1>Schedule A New Flight</h1>
-    <form method="post" action="http://localhost:8080/Project-1/add-new-flight">
-        <label for="origin">Origin City: </label><br>
-        <input type="text" name="origin" required /><br>
+        <label for="destination">Destination: </label><br />
+        <input type="text" name="destination" id="destination" required /><br />
 
-        <label for="destination">Destination: </label><br>
-        <input type="text" name="destination" required /><br>
+        <label for="start_time">Start Date: </label><br />
+        <input type="date" name="start_time" id="start_time" required /><br />
 
-        <label for="start_time">Start Date/Time: </label><br>
-        <input type="datetime-local" name="start_time" required /><br>
+        <label for="end_time">End Date: </label><br />
+        <input type="date" name="end_time" id="end_time" required /><br />
 
-        <label for="end_time">End Date/Time: </label><br>
-        <input type="datetime-local" name="end_time" required /><br>
+        <label for="flight_number">Flight Number: </label><br />
+        <input
+          type="number"
+          name="flight_number"
+          min="100"
+          value="100"
+          id="flightNumber"
+          required
+        /><br /><br />
 
-        <label for="flight_number">Flight Number: </label><br>
-        <input type="number" name="flight_number" min="100" value="100" required /><br><br>
+        <button type="submit">Submit</button><br /><br />
+        <button type="reset">Reset</button>
+      </form>
+    </div>
 
-        <input type="submit" value="Submit" /><br><br>
-        <input type="reset" value="Reset" />
-    </form>
-</div>
+    <div>
+      <h1>Cancel A Flight</h1>
+      <form id="cancelFlight"
+      >
+        <label for="flight_number">Flight Number: </label><br />
+        <input
+          type="number"
+          name="flight_number"
+          min="100"
+          value="100"
+          id="flightNumber"
+          required
+        /><br /><br />
+        <button type="submit" onclick="submitForm2()">Cancel Flight</button><br /><br />
+        <button type="reset">Reset</button>
+      </form>
+    </div>
 
-<div>
-    <h1>Cancel A Flight</h1>
-    <form method="delete" action="http://localhost:8080/Project-1/cancel-flight">
-        <label for="flight_number">Flight Number: </label><br>
-        <input type="number" name="flight_number" min="100" value="100" required /><br><br>
-        <input type="submit" value="Cancel Flight" /><br><br>
-        <input type="reset" value="Reset" />
-    </form>
-</div>
+    <script>
+      const form = document.getElementById("addFlight");
 
-<div>
-    <h1>Active Flight(s)</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>
-                Active Passengers:
-            </th>
-        </tr>
-        </thead>
-        <tbody id="activePassengersTable">
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitForm(
+            originCity.value,
+            destination.value,
+            start_time.value,
+            end_time.value,
+            flightNumber.value
+        );
+      });
 
+<<<<<<< HEAD
         </tbody>
     </table>
     <table>
@@ -72,39 +88,95 @@
         </tr>3
         </thead>
         <tbody id="activeFlightsTable">
+=======
+      async function submitForm(
+        originCityValue,
+        destinationValue,
+        sTimeValue,
+        eTimeValue,
+        fNumberValue
+      ) {
+        let formObject = {
+          origin: originCityValue,
+          destination: destinationValue,
+          begin: sTimeValue,
+          end: eTimeValue,
+          flightNumber: fNumberValue,
+        };
+        console.log(formObject);
 
-        </tbody>
-    </table>
-</div>
-<script>
-        async function getActivePassengers() {
-            let resp = await fetch("http://localhost:8080/Project-1/active-passengers")
-            let json = await resp.jason();
-            let table = document.getElementById("activePassengersTable")
+        let response = await fetch("http://localhost:8080/Project-1/flights", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Method": "addFlight" },
+          body: JSON.stringify(formObject),
+        });
+      }
+>>>>>>> cecbe8e29af32cd2d55d77735345011c0b740a07
 
-            for (let element of json) {
-                let tr = table.insertRow(-1);
-                for (let key in elements){
-                    let cell = tr.insertCell(-1);
-                    cell.innerHTML = element[key]
-                }
-            }
+      async function getActivePassengers() {
+        let resp = await fetch(
+          "http://localhost:8080/Project-1/active-passengers"
+        );
+        let json = await resp.jason();
+        let table = document.getElementById("activePassengersTable");
+
+        for (let element of json) {
+          let tr = table.insertRow(-1);
+          for (let key in elements) {
+            let cell = tr.insertCell(-1);
+            cell.innerHTML = element[key];
+          }
         }
+      }
     </script>
-<script>
-        async function getAllFlights() {
-            let resp = await fetch("http://localhost:8080/Project-1/active-Flights")
-            let json = await resp.jason();
-            let table = document.getElementById("activeFlightsTable")
-            for (let element of json) {
-                let tr = table.insertRow(-1);
-                for (let key in elements){
-                    let cell = tr.insertCell(-1);
-                    cell.innerHTML = element[key]
-                }
-            }
+    <script>
+      async function getAllFlights() {
+        let resp = await fetch(
+          "http://localhost:8080/Project-1/active-Flights"
+        );
+        let json = await resp.jason();
+        let table = document.getElementById("activeFlightsTable");
+        for (let element of json) {
+          let tr = table.insertRow(-1);
+          for (let key in elements) {
+            let cell = tr.insertCell(-1);
+            cell.innerHTML = element[key];
+          }
         }
+      }
+      async function submitForm2() {
+        let formObject = {
+          flightNumber: flightNumber.value,
+        };
+        console.log(formObject);
+        let response = await fetch("http://localhost:8080/Project-1/flights", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Method": "cancelFlight" },
+          body: JSON.stringify(formObject),
+        });
+      }
     </script>
-</body>
-
+    
+    <div>
+      <h1>Active Flight(s)</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Active Passengers:</th>
+          </tr>
+        </thead>
+        <tbody id="activePassengersTable"></tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Current Active Flight:</th>
+            <th>Start Date/Time:</th>
+            <th>End Date/Time:</th>
+          </tr>
+        </thead>
+        <tbody id="activeFlightsTable"></tbody>
+      </table>
+    </div>
+  </body>
 </html>

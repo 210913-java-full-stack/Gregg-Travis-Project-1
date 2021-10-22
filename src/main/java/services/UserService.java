@@ -36,14 +36,6 @@ public class UserService {
         return checkUser;
     }
 
-    public static List<UserModel> getAllToDoItems() {
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<UserModel> query = builder.createQuery(UserModel.class);
-        Root<UserModel> root = query.from(UserModel.class);
-        query.select(root);
-        return session.createQuery(query).getResultList();
-    }
-
     //delete method
 
     public static void deleteUser(UserModel user) {

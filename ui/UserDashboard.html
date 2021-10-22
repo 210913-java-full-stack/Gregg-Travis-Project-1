@@ -8,12 +8,47 @@
 </head>
 <body>
     <h1> Welcome to your user page</h1>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Flight Number |</th>
+                    <th>Origin |</th>
+                    <th>Destination |</th>
+                    <th>Start Date |</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody id="FlightsTable">
+
+            </tbody>
+        </table>
+    </div>
+
     
     <script>
         (function getQueryParameters() {
             let urlParameters = new URLSearchParams(window.location.search);
             console.log("Query Parameter userName: ", urlParameters.get("userName"));
         })();
+
+        (async function getFlights() {
+            let response = await fetch("http://localhost:8080/Project-1/flights");//1 parameter assumes this is a get request
+            let json = await response.json();
+            await populateTable(json);
+        })();
+
+        function populateTable(json){
+            let table = document.getElementById("FlightsTable");
+
+            for(let element of json) {
+                let tr = table.insertRow(-1);
+                for(let key in element) {
+                    let cell = tr.insertCell(-1);
+                    cell.innerHTML =  element[key];
+                }
+            }
+        }
     </script>
 </body>
 </html>
