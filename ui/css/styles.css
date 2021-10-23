@@ -1,4 +1,8 @@
-h1{
+body{
     font-family: 'Roboto', sans-serif;
 }
-
+.top-div{
+    margin: auto;
+    width: 80%;
+    text-align: justify;
+}
