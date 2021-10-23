@@ -17,9 +17,9 @@ This follows the client/server architecture for the entire application, and is a
 The backend server exposes an API, and the front end client connects to the same API for sending & receiving JSON data.
 The backend is written in Java 8, and the frontend is written in HTML, CSS/Bootstrap, and JavaScript. 
 
-This project was done with a 2 member team - Gregg Friedman and Travis Hood. Though we were assigned when we began, we have become great teammates and learned to cooporate and communicate effectively what our goals and challenges were throughout the course of building the project. We learned through hands-on training that we were capable of generating just about anything that we could imagine utilizing the aforementioned technologies.
+This project was done with a 2 member team - Gregg Friedman and Travis Hood. Though we were assigned when we began, we have become great teammates and learned to cooporate and communicate effectively what our goals and challenges were throughout the course of building the project. We learned through hands-on training that we were capable of generating just about anything that we could imagine. In utilizing the aforementioned technologies, we have vastly contributed every requirement and been able to deploy our application easily and scalably, while abstracting away from an end-user underlying technologies and services.
 
-### Minimum Requirements
+### Requirements
 1. Proper use of OOP principles
 2. Output is presented to user on a web page, and input is accepted from a web form
 3. Webapp(backend) and UI(frontend) are served from AWS and are publically available
@@ -30,9 +30,9 @@ This project was done with a 2 member team - Gregg Friedman and Travis Hood. Tho
 8. All Exceptions are caught and logged to a file
 9. 80%+ Unit test coverage for service-layer classes/methods
 
-### Bonus Features
-1. DevOps CI/CD pipeline to build and deploy project
-2. Advanced UI Framework (Angular or React)
+ Bonus Features
+1. DevOps CI/CD pipeline (AWS) to build and deploy project
+2. Bootstrap v5
 
 
 ## Airline Ticketing Kiosk App
