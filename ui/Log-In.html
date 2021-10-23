@@ -32,37 +32,40 @@
 
         form.addEventListener("submit", function(event) {
             event.preventDefault();
+            event.stopPropagation();
             console.log(user_name.value);
             console.log(password.value);
-            TestResponse(user_name.value, password.value);
+            UserResponse(user_name.value, password.value);
         });
-
-        async function TestResponse(userValue, passValue) {
+        
+        async function UserResponse(userValue, passValue) {
             let formObject = {
                 userName: userValue,
-                pass: passValue
+                pass: passValue,
             }
 
-            console.log(formObject);
 
             let response = await fetch("http://localhost:8080/Project-1/users", {
                 method: "POST",
                 headers: {"Content-Type": "application/json",
                          "Method": "login"},
                 body: JSON.stringify(formObject)
+                
 
             });
 
-            //continue here, use the response object
             
             console.log(response);//do a fact finding explatory console mission
             let object = response.json();//this parses the body assuming it's json, and returns a javascript object(
-            console.log(object);
+            //console.log(object);
             let statusCode = response.status;
+
            if(statusCode === 406) {
                alert("User Name/Password combination not found! Please try again");
            } else if(statusCode === 202) {
-                window.location.href = "UserDashboard.html?userName=" + userValue;
+   
+            window.location.href = "UserDashboard.html?userName=" + userValue;
+            
 
            }
         }

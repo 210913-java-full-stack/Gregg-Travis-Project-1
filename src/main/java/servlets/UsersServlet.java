@@ -27,6 +27,7 @@ public class UsersServlet extends HttpServlet {
                 UserService.saveNewUser(payload);
                 break;
             case "login":
+                System.out.println("made to login servlet case");
                 UserModel checkUser;
                 checkUser = UserService.getUserByUserPass(payload.getUserName(), payload.getPass());
                 if (checkUser != null) {
