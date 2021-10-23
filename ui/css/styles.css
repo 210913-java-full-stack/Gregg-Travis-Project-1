@@ -12,3 +12,15 @@ body{
     margin-left: 1px;
     margin-top: 1%;
 }
+.btn-warning{
+    background-image: #ffcb3b;
+    font-size: large;
+    font-weight: 200;
+    border-style: hidden;
+}
+.btn-primary{
+    background-image: rgb(49, 49, 250);
+    font-size: large;
+    font-weight: 200;
+    border-style: hidden;
+}
