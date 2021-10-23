@@ -48,7 +48,7 @@
         <h2>Select Ticket Number to Cancel:</h2>
         <form id="cancelTicket">
             <label for="ticket_number">Ticket Number:</label><br>
-            <input type="number" id="ticketNumber">
+            <input type="number" id="ticketNumber2">
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -90,7 +90,7 @@
         async function PuchaseTicketResponse(flightNumberValue) {
             let formObject = {
                 userName: urlParameters.get("userName"),
-                flightNumber: flightNumberValue
+                flightNumber: flightNumberValue,
             }
 
             console.log(formObject);
