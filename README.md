@@ -37,13 +37,13 @@ This project was done with a 2 member team - Gregg Friedman and Travis Hood. Tho
 These are user stories to describe the airline ticketing kiosk app. If you are not building this app for your project you will need to discuss with your trainer to establish proper user stories.
 
 ### Minimum Viable Product
-[ x ] As a user, I can see all available flights from a city to a city.		
-[ x ] As a user, I can purchase one or more tickets on a flight.		
-[ x ]As a user, I can check in for my flight.				
-[ x ] As a user, I can cancel my ticket. 				
-[ x ] As an administrator, I can schedule a new flight.			
-[ x ] As an administrator, I can cancel a flight.			
-[ ]As an administrator, I can see all users with tickets for a flight. (in progress)
+[x] As a user, I can see all available flights from a city to a city.		
+[x] As a user, I can purchase one or more tickets on a flight.		
+[x]As a user, I can check in for my flight.				
+[x] As a user, I can cancel my ticket. 				
+[x] As an administrator, I can schedule a new flight.			
+[x] As an administrator, I can cancel a flight.			
+[X]As an administrator, I can see all users with tickets for a flight. (in progress)
 
 ### Bonus Stories
 * As an administrator, I can cancel a ticket on any flight.
