@@ -42,6 +42,7 @@ public class TicketsServlet extends HttpServlet {
                     break;
                 case "removeTicket":
                     TicketsService.deleteTicket(payload.getTicketNumber());
+                    break;
                 case "checkIn":
                     TicketsService.checkInByUserName(payload.getTicketNumber(), payload.getUserName());
             }

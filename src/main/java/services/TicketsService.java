@@ -2,7 +2,6 @@ package services;
 
 import models.TicketsModel;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,7 +10,6 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class TicketsService {
-    //private static SessionFactory sessionFactory;
     private static Session session;
 
     public static void addTicket(TicketsModel ticket) {
@@ -28,7 +26,9 @@ public class TicketsService {
         query.select(root).where(builder.equal(root.get("ticketNumber"), tn));
         ticket = session.createQuery(query).getSingleResult();
         System.out.println(ticket.getTicketNumber() + ", " + ticket.getFlightNumber() + ", " + ticket.isCheckIn());
+        session.beginTransaction();
         session.delete(ticket);
+        session.getTransaction().commit();
     }
 
     //write a method to pull the record by username
