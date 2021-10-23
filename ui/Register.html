@@ -54,6 +54,7 @@
             console.log(user_name.value);
             console.log(password.value);
             submitForm(first_name.value, last_name.value, user_name.value, password.value);
+            
         });
 
         async function submitForm(fNameValue, lNameValue, userValue, passValue) {
@@ -75,6 +76,17 @@
                 },
                 body: JSON.stringify(formObject)
             });
+
+            console.log(response);//do a fact finding explatory console mission
+            let object = response.json();//this parses the body assuming it's json, and returns a javascript object(
+            console.log(object);
+            let statusCode = response.status;
+           if(statusCode === 406) {
+               alert("User Name is already in use! Please try another one");
+           } else if(statusCode === 200) {
+                window.location.href = "Log-in.html";
+
+           }
         }
     </script>
  

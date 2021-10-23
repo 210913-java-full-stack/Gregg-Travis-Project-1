@@ -19,8 +19,6 @@ public class TicketsModel {
     @Column (name="checked_in")
     private boolean checkIn;
 
-
-
     public TicketsModel() {}
 
     public TicketsModel(Integer flightNumber) {

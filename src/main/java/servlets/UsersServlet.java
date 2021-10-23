@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -24,9 +26,15 @@ public class UsersServlet extends HttpServlet {
         UserModel payload = mapper.readValue(jsonText, UserModel.class);
         switch (requestHeader) {
             case "register":
-                UserService.saveNewUser(payload);
+                if(UserService.uniqueUsername(payload.getUserName())) {
+                    UserService.saveNewUser(payload);
+                    resp.setStatus(200);
+                }
+                else {
+                    resp.setStatus(406);
+                }
                 break;
-            case "login":
+            case "userLogin":
                 UserModel checkUser;
                 checkUser = UserService.getUserByUserPass(payload.getUserName(), payload.getPass());
                 if (checkUser != null) {

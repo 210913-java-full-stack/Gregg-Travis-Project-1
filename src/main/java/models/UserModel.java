@@ -27,12 +27,11 @@ public class UserModel {
     @Column
     private Integer role;
 
-//    @Column (name="checked_in")
-//    private boolean isCheckedIn;
-
     //What we need here: We need to associate users with the flights they will take
     @ManyToMany
-    private List<FlightsModel> flights;
+    private List<TicketsModel> tickets;
+
+
 
 
     //Sign-in Constructor

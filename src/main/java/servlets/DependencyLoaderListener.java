@@ -4,6 +4,7 @@ import models.FlightsModel;
 import models.UserModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import services.FlightService;
 import services.HibernateService;
@@ -22,6 +23,12 @@ public class DependencyLoaderListener implements ServletContextListener {
         UserService.setSession(session);
         FlightService.setSession(session);
         TicketsService.setSession(session);
+        UserModel gregg = new UserModel("Gfriedman", "456", "Gregg", "Friedman", 2);
+        UserModel travis = new UserModel("Thood", "789", "Travis", "Hood", 2);
+        Transaction transaction = session.beginTransaction();
+        session.save(gregg);
+        session.save(travis);
+        transaction.commit();
 
     }
 

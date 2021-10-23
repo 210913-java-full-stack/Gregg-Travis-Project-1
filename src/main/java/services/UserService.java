@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.List;
 
 public class UserService {
@@ -34,6 +35,17 @@ public class UserService {
                     builder.equal(root.get("pass"), pass)));
         checkUser = session.createQuery(query).getSingleResult();
         return checkUser;
+    }
+
+    public static boolean uniqueUsername(String username)
+    {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<UserModel> query = builder.createQuery(UserModel.class);
+        Root<UserModel> root = query.from(UserModel.class);
+        query.select(root).where(builder.equal(root.get("userName"), username));
+        List<UserModel> userList = session.createQuery(query).getResultList();
+
+        return userList.isEmpty();
     }
 
     //delete method
