@@ -1,7 +1,7 @@
 package models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="flights")
@@ -23,6 +23,9 @@ public class FlightsModel {
 
     @Column
     private String end;
+
+    @OneToMany
+    List<TicketsModel> tickets;
 
     public FlightsModel() {}
 

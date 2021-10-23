@@ -5,7 +5,11 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>AdminFlightPage</title>
+  <!-- bootstrap v5 cdn: -->
+  
+
 </head>
 
 <body>
@@ -80,7 +84,7 @@
       let resp = await fetch(
         "http://localhost:8080/Project-1/active-passengers"
       );
-      let json = await resp.json();
+      let json = await resp.jason();
       let table = document.getElementById("activePassengersTable");
 
       for (let element of json) {
@@ -105,16 +109,20 @@
         }
       }
     }
+
     const cancelForm = document.getElementById("cancelFlight");
 
     cancelForm.addEventListener("submit", function (event) {
       event.preventDefault();
       cancelForm2(
+
         flightNumber.value
       );
     });
 
+
     async function cancelForm2() {
+
       let formObject = {
         flightNumber: flightNumber.value,
       };
@@ -151,6 +159,8 @@
       <tbody id="activeFlightsTable"></tbody>
     </table>
   </div>
+ 
+
 </body>
 
 </html>
