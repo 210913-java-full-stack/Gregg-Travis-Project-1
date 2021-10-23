@@ -1,8 +1,14 @@
 body{
     font-family: 'Roboto', sans-serif;
+    background-image: radial-gradient( rgb(90, 90, 219), lightblue);
 }
 .top-div{
     margin: auto;
+    margin-top: 10%;
     width: 80%;
     text-align: justify;
+}
+.button-row{
+    margin-left: 1px;
+    margin-top: 1%;
 }
