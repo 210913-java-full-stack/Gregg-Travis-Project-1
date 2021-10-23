@@ -34,6 +34,8 @@ public class UsersServlet extends HttpServlet {
                     resp.setStatus(406);
                 }
                 break;
+            case "login":
+                System.out.println("made to login servlet case");
             case "userLogin":
                 UserModel checkUser;
                 checkUser = UserService.getUserByUserPass(payload.getUserName(), payload.getPass());
