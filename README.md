@@ -48,22 +48,22 @@ These are user stories to describe the airline ticketing kiosk app. If you are n
 - [ ] As an administrator, I can see all users with tickets for a flight. (in progress)
 
 ### Bonus Stories
-* As an administrator, I can cancel a ticket on any flight.
-* As an pilot, I can initiate takeoff of a flight. (No more new tickets or cancellations)
+- [ ] As an administrator, I can cancel a ticket on any flight.
+- [ ] As an pilot, I can initiate takeoff of a flight. (No more new tickets or cancellations)
 
 ## Tech Stack
 The application should be properly employing the following technologies:
- - Java 8
- - JavaScript
- - HTML & CSS
- - Apache Maven for dependencies and project management
- - Git & Github for version control
- - MariaDB deployed on AWS RDS for data persistence
- - Hibernate to abstract away JDBC code
- - AWS EC2, ElasticBeanstalk, S3, CodeBuild, CodePipeline
+ - [x] Java 8
+ - [x] JavaScript
+ - [x] HTML & CSS
+ - [x] Apache Maven for dependencies and project management
+ - [x] Git & Github for version control
+ - [x] MariaDB deployed on AWS RDS for data persistence
+ - [x] Hibernate to abstract away JDBC code
+ - [ ] AWS EC2, ElasticBeanstalk, S3, CodeBuild, CodePipeline (in progress)
 
 ## Deadline & Presentation
- - Finalized version of your project must be pushed to your team's p1 repository within the training originzation by 9:00 AM Central time on the date of the presentation showcase. Commits after that time will not be considered. The most recent commit submitted before that time will be the version of the project that is graded.
-   - Presentation Showcase (Due Date): Wednesday, October 27th 2021, 9:00 AM CDT.
+ - Finalized version of the project must be pushed to your team's p1 repository within the training originzation by 9:00 AM Central time on the date of the presentation showcase. Commits after that time will not be considered. The most recent commit submitted before that time will be the version of the project that is graded.
+   - Presentation Showcase (Due Date): We..dnesday, October 27th 2021, 9:00 AM CDT.
  - Must give a brief (10-15 minute) presentation of your project. Be prepared to answer questions about your work from the QC team.
  - All work **MUST BELONG TO THE ASSIGNED TEAM**. Collaboration was allowed and encouraged, but at the end of the project (Gregg and Travis) must have an excellent understanding of every line of code in the project AND BE ABLE TO ANSWER QUESTIONS ABOUT ANY PART OF IT.
