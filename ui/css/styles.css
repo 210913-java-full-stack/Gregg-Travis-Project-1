@@ -3,13 +3,16 @@ body{
     font-family: 'Roboto', sans-serif;
     background-image: radial-gradient( rgb(130, 130, 240), lightblue);
 }
+
 html{
     margin-bottom: 0%;
     background-size: 0%;
 }
+
 h2{
     font-weight: bold;
 }
+
 .top-div{
 
     margin: auto;
@@ -18,11 +21,13 @@ h2{
     text-align: justify;
     z-index: 1;
 }
+
 .button-row{
     z-index: 0;
     margin-left: 1px;
     margin-top: 1%;
 }
+
 .btn-warning{
     z-index: 0;
     background-color: #ffcb3b;
@@ -30,6 +35,7 @@ h2{
     font-weight: 200;
     border-style: hidden;
 }
+
 .btn-primary{
     z-index: 0;
     background-color: rgb(49, 49, 250);
@@ -48,6 +54,16 @@ h2{
     min-width: 100%;
     min-height: 100%;
 }
+.anchors{
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+        
+}
+
+a:hover{
+    color: rgb(49, 49, 250);
+}
 
 #img-div{
     position: absolute;
@@ -58,4 +74,24 @@ h2{
     margin: auto;
     min-width: 50%;
     min-height: 50%;
+}
+.card{
+    width: 18rem;
+}
+.new-user{
+    position: relative;
+    bottom: 10;
+
+}
+
+.user-welcome{
+    margin: auto;
+    position: relative;
+    top: 10;
+    right: 10;
+
+}
+.index-div{
+    font-size: medium;
+    font-weight: bold;
 }
