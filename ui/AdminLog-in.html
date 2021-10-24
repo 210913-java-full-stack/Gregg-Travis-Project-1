@@ -41,7 +41,7 @@
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Method": "userLogin"
+                    "Method": "adminLogin"
                 },
                 body: JSON.stringify(formObject)
 
@@ -57,7 +57,7 @@
             if (statusCode === 406) {
                 alert("User Name/Password combination not found! Please try again");
             } else if (statusCode === 202) {
-                window.location.href = "UserDashboard.html?userName=" + userValue;
+                window.location.href = "Admin.html?userName=" + userValue;
 
             }
         }

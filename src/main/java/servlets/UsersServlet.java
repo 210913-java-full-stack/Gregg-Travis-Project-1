@@ -38,9 +38,20 @@ public class UsersServlet extends HttpServlet {
                 System.out.println("made to login servlet case");
             case "userLogin":
                 UserModel checkUser;
-                checkUser = UserService.getUserByUserPass(payload.getUserName(), payload.getPass());
+                checkUser = UserService.checkUserByUserPass(payload.getUserName(), payload.getPass());
                 if (checkUser != null) {
                     String json = mapper.writeValueAsString(checkUser);
+                    resp.setStatus(202);
+                    resp.getWriter().print(json);
+                } else {
+                    resp.setStatus(406);
+                }
+                break;
+            case "adminLogin":
+                UserModel checkAdmin;
+                checkAdmin = UserService.checkAdmin(payload.getUserName(), payload.getPass());
+                if (checkAdmin != null && checkAdmin.getRole().equals(2)) {
+                    String json = mapper.writeValueAsString(checkAdmin);
                     resp.setStatus(202);
                     resp.getWriter().print(json);
                 } else {
