@@ -145,8 +145,8 @@
 
         CancelTicketForm.addEventListener("submit", function (event) {
             event.preventDefault();
-            console.log(ticketNumber.value);
-            cancelTicketResponse(ticketNumber.value);
+            console.log(ticketNumber2.value);
+            cancelTicketResponse(ticketNumber2.value);
         });
 
         async function cancelTicketResponse(ticketNumberValue) {
@@ -161,7 +161,7 @@
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Method": "cancelTicket"
+                    "Method": "removeTicket"
                 },
                 body: JSON.stringify(formObject)
             });

@@ -1,17 +1,13 @@
 package services;
 
 import models.FlightsModel;
-import models.TicketsModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public class FlightService {
@@ -25,8 +21,6 @@ public class FlightService {
         String end = flight.getEnd();
         System.out.println(begin);
         System.out.println(end);
-//        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-//        flight.getBegin().format(myFormatObj);
         session.save(flight);
         trans.commit();
     }
@@ -45,10 +39,6 @@ public class FlightService {
         return session.createQuery(query).getResultList();
     }
 
-    //update method
-    public static void CheckInUserByFlightNumber (int fn) {
-    }
-
     //delete method
     public static void deleteFlight(int fn) {
         session.beginTransaction();
@@ -60,9 +50,6 @@ public class FlightService {
         getFlight = session.createQuery(query).getSingleResult();
         session.delete(getFlight);
         session.getTransaction().commit();
-        //Query query = SessionHolder.getSession().createQuery("DELETE Flight WHERE flightNumber = :flightNumber");
-        //query.setParameter("flightNumber", flightNumber);
-        //int result = query.executeUpdate(); ----> this will work!
     }
 
     public static SessionFactory getSessionFactory() {
