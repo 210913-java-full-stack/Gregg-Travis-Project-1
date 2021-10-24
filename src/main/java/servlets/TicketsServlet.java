@@ -2,6 +2,7 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.TicketsModel;
+import services.FileLogger;
 import services.TicketsService;
 
 import javax.servlet.http.HttpServlet;
@@ -47,7 +48,7 @@ public class TicketsServlet extends HttpServlet {
                     TicketsService.checkInByUserName(payload.getTicketNumber(), payload.getUserName());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(e.toString(), 4);
         }
 
     }
