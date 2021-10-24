@@ -24,7 +24,7 @@ public class UserService {
     }
 
     //read methods
-    public static UserModel getUserByUserPass(String user, String pass) {
+    public static UserModel checkUserByUserPass(String user, String pass) {
         UserModel checkUser;
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<UserModel> query = builder.createQuery(UserModel.class);
@@ -35,6 +35,18 @@ public class UserService {
                     builder.equal(root.get("pass"), pass)));
         checkUser = session.createQuery(query).getSingleResult();
         return checkUser;
+    }
+    public static UserModel checkAdmin(String user, String pass) {
+        UserModel checkAdmin;
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<UserModel> query = builder.createQuery(UserModel.class);
+        Root<UserModel> root = query.from(UserModel.class);
+        query.select(root).where(
+                builder.and(
+                        builder.equal(root.get("userName"), user),
+                        builder.equal(root.get("pass"), pass)));
+        checkAdmin = session.createQuery(query).getSingleResult();
+        return checkAdmin;
     }
 
     public static boolean uniqueUsername(String username)

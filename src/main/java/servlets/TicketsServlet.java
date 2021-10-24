@@ -19,8 +19,8 @@ public class TicketsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            List<TicketsModel> PassengerList = TicketsService.getAllTickets();
-            String json = mapper.writeValueAsString(PassengerList);
+            List<TicketsModel> TicketList = TicketsService.getAllTickets();
+            String json = mapper.writeValueAsString(TicketList);
             resp.getWriter().print(json);
         } catch (IOException e) {
             e.printStackTrace();
