@@ -75,23 +75,12 @@ a:hover{
     min-width: 50%;
     min-height: 50%;
 }
+
 .card{
     width: 18rem;
 }
-.new-user{
-    position: relative;
-    bottom: 10;
 
-}
-
-.user-welcome{
-    margin: auto;
-    position: relative;
-    top: 10;
-    right: 10;
-
-}
 .index-div{
     font-size: medium;
-    font-weight: bold;
+    font-weight: 400;
 }
