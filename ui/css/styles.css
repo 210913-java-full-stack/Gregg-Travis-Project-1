@@ -25,14 +25,14 @@ h2{
 }
 .btn-warning{
     z-index: 0;
-    background-image: #ffcb3b;
+    background-color: #ffcb3b;
     font-size: large;
     font-weight: 200;
     border-style: hidden;
 }
 .btn-primary{
     z-index: 0;
-    background-image: rgb(49, 49, 250);
+    background-color: rgb(49, 49, 250);
     font-size: large;
     font-weight: 200;
     border-style: hidden;
