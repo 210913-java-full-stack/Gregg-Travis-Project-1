@@ -2,8 +2,6 @@
 This a Flight Kiosk web application built by Gregg Friedman and Travis Hood for Project 1 assignment.
 # Project 1
 
-# Project 1
-
 ## Description
 
 This project utilizes previous concepts from project 0, as well as adding the following topics:
