@@ -38,7 +38,7 @@
             console.log(formObject);
 
             // Elastic BStlk conn here let response = await fetch("Project1-env.eba-mehydxgh.us-east-2.elasticbeanstalk.com/users", {
-            let response = await fetch("http://localhost:8080/Project-1/users", {
+            let response = await fetch("http://Demoapp-env.eba-fymdpxcw.us-east-2.elasticbeanstalk.com/users", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -58,7 +58,7 @@
             if (statusCode === 406) {
                 alert("User Name/Password combination not found! Please try again");
             } else if (statusCode === 202) {
-                window.location.href = "Admin.html?userName=" + userValue;
+                window.location.href = "https://project-1-bucket-tjh.s3.us-east-2.amazonaws.com/ui/Admin.html?userName=" + userValue;
 
             }
         }

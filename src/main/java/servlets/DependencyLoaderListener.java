@@ -18,7 +18,7 @@ public class DependencyLoaderListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        Configuration config = new Configuration();
+        //Configuration config = new Configuration();
         Session session = HibernateService.getSession();
         UserService.setSession(session);
         FlightService.setSession(session);

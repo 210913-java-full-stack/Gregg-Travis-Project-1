@@ -53,7 +53,7 @@ public class CORSFilter implements Filter {
             resp.setStatus(HttpServletResponse.SC_ACCEPTED);
             return;
         }
-
+        
         // pass the request along the filter chain
         chain.doFilter(request, servletResponse);
     }
