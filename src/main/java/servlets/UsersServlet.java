@@ -59,7 +59,7 @@ public class UsersServlet extends HttpServlet {
                     break;
             }
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(e.toString(), 4);
+            FileLogger.getFileLogger().console().threshold(4).writeLog(e.toString(), 4);
         }
     }
 }

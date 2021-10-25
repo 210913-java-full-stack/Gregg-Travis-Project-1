@@ -24,7 +24,7 @@ public class TicketsServlet extends HttpServlet {
             String json = mapper.writeValueAsString(TicketList);
             resp.getWriter().print(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().console().threshold(4).writeLog(e.toString(), 4);
         }
     }
 

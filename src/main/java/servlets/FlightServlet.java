@@ -38,7 +38,7 @@ public class FlightServlet extends HttpServlet {
 
             }
         } catch(IOException e) {
-            FileLogger.getFileLogger().writeLog(e.toString(), 4);
+            FileLogger.getFileLogger().console().threshold(4).writeLog(e.toString(), 4);
         }
     }
 
