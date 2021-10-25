@@ -1,10 +1,11 @@
-package utils;
+package services;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 public class FileLogger {
     //print some or all of the stack trace to file
@@ -14,6 +15,7 @@ public class FileLogger {
     private static int threshold;
     private static boolean printToConsole;
     private static boolean printToConsoleTemp = false;
+    private static Logger logger;
 
 //    public enum Threshold {
 //        INFO,

@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
+import services.FileLogger;
 
 public class FlightServlet extends HttpServlet {
 
@@ -37,8 +38,7 @@ public class FlightServlet extends HttpServlet {
 
             }
         } catch(IOException e) {
-            e.printStackTrace();
-            //TODO: Replace me with file logging!
+            FileLogger.getFileLogger().console().threshold(4).writeLog(e.toString(), 4);
         }
     }
 
