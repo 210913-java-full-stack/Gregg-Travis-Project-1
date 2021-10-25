@@ -5,20 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
     <title>Admin Login</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <h1>Please sign-in to access admin functions</h1>
-    <form id="signInForm">
-        <label for="user_name">User Name: </label><br>
-        <input type="text" name="user_name" id="user_name" required /><br>
-        <label for="password">Password: </label><br>
-        <input type="password" id="password" required /><br><br>
-        <button type="submit" class="btn btn-dark">Submit</button><br><br>
-        <input type="reset" value="Reset" /><br><br>
-    </form>
+    <div id="img-div">
+        <img class="img-background" src="images/heagonlines.jpg" alt="hexagonal-lined-cubes">
+    </div>
+    <div class="top-div">
+        <div class="row row-cols-1 row-cols-md-6 g-4">
+            <div class="col">
+                <div class="card mb-6 col-med-6 shadow">
+                    <img src="images/admin-welcome.jpg" class="card-img-top" alt="admin-welcome-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Admin Login</h5>
+                        <p class="card-text">
+                            Please sign-in with administrator credentials to use this terminal
+                        </p>
+                        <form id="signInForm">
+                            <div>
+                                <p class="card-text">Enter your user name:</p>
+                                <input class="mb-3 form-control" type="text" name="user_name" id="user_name"
+                                    placeholder="User name" aria-label="User name" required />
+                            </div>
+                            <div>
+                                <p class="card-text">Enter your password:</p>
+                                <input class="mb-3 form-control" type="password" name="password" id="password"
+                                    placeholder="Password" aria-label="Password" required />
+                            </div>
+                            <button type="submit" class=" form-control mb-3 btn btn-primary btn-med">Sign-in</button>
 
+                            <button type="reset" class="form-control mb-3 btn-med btn btn-warning">Reset</button>
+                    </div>
+
+
+
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <script>
         const form = document.getElementById("signInForm");
 
@@ -38,7 +79,7 @@
             console.log(formObject);
 
             // Elastic BStlk conn here let response = await fetch("Project1-env.eba-mehydxgh.us-east-2.elasticbeanstalk.com/users", {
-            let response = await fetch("http://Demoapp-env.eba-fymdpxcw.us-east-2.elasticbeanstalk.com/users", {
+            let response = await fetch("http://localhost:8080/Project-1/users", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,15 +93,16 @@
 
             console.log(response); //do a fact finding explatory console mission
             let object = response
-        .json(); //this parses the body assuming it's json, and returns a javascript object(
+                .json(); //this parses the body assuming it's json, and returns a javascript object(
             console.log(object);
             let statusCode = response.status;
             if (statusCode === 406) {
                 alert("User Name/Password combination not found! Please try again");
             } else if (statusCode === 202) {
-                window.location.href = "https://project-1-bucket-tjh.s3.us-east-2.amazonaws.com/ui/Admin.html?userName=" + userValue;
+                window.location.href = "Admin.html";
 
             }
+            Promise.resolve();
         }
     </script>
 </body>

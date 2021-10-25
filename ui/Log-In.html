@@ -35,27 +35,7 @@
                             Please sign-in with your credentials to use this terminal
                         </p>
                         <form id="signInForm">
-                            <!-- 
-                                <div>
-                                        <p>Enter your user name and password:</p>
-                                        <input class="mb-3 form-control" type="text" name="user_name" id="user_name"
-                                            placeholder="User name" aria-label="User name" required />
-                                    </div>
-                                    <div>
-                                        <input class="mb-3 form-control" type="password" name="password" id="password"
-                                            placeholder="Password" aria-label="Password" required />
-                                    </div>
-                                </div>
-                                
-                                    <button type="submit"
-                                        class="btn btn-primary btn-med">Sign-up</button><br><br>
-                                
-                                <button type="reset"
-                                        class="btn btn-warning">Reset</button>
-                                
-                            </form>
-
-                             -->
+                           
                              <div>
                                 <p class="card-text">Enter your user name:</p>
                                 <input class="mb-3 form-control" type="text" name="user_name" id="user_name"
@@ -67,7 +47,7 @@
                                     placeholder="Password" aria-label="Password" required />
                             </div>
                             <button type="submit"
-                                class=" form-control mb-3 btn btn-primary btn-med">Sign-up</button>
+                                class=" form-control mb-3 btn btn-primary btn-med">Sign-in</button>
                         
                         <button type="reset"
                                 class="form-control mb-3 btn-med btn btn-warning">Reset</button>
@@ -130,7 +110,7 @@
 
             if (statusCode === 406) {
                 alert("User Name/Password combination not found! Please try again");
-            } else if (statusCode === 202) {
+            } else if (statusCode === 200) {
 
                 window.location.href = "UserDashboard.html?userName=" + userValue;
 
