@@ -31,10 +31,6 @@ public class TicketsService {
         session.getTransaction().commit();
     }
 
-    //write a method to pull the record by username
-    //update the object received by setting the setter to true
-    //This should cause the database to update automagically possibly by session.flush
-
     /**
      * This method pulls a unique ticket model object by username, and then sets that
      * object's checkin value to true, indicating the ticket holder is present and boarding.

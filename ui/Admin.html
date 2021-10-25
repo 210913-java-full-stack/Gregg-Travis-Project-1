@@ -63,6 +63,13 @@
       </thead>
       <tbody id="activeTicketsTable"></tbody>
     </table>
+    <form id="removeTicket">
+      <br><label for="ticketNumber" text-align: center>If you would like to remove a ticket enter the ticket number
+        below:</label><br>
+      <input type="number" name="ticketNumber" id="ticketNumber" />
+      <button type="submit">Submit</button>
+    </form>
+
   </div>
 
   <script>
@@ -160,26 +167,48 @@
     }
 
     (async function getTickets() {
-            let response = await fetch(
-                "http://localhost:8080/Project-1/tickets"); //1 parameter assumes this is a get request
-            let json = await response.json();
-            await populateTable(json);
-            Promise.resolve();
-        })();
+      let response = await fetch(
+        "http://localhost:8080/Project-1/tickets"); //1 parameter assumes this is a get request
+      let json = await response.json();
+      await populateTable(json);
+      Promise.resolve();
+    })();
 
-        function populateTable(json) {
-            let table = document.getElementById("activeTicketsTable");
+    function populateTable(json) {
+      let table = document.getElementById("activeTicketsTable");
 
-            for (let element of json) {
-                let tr = table.insertRow(-1);
-                for (let key in element) {
-                    let cell = tr.insertCell(-1);
-                    cell.innerHTML = element[key];
-                }
-            }
+      for (let element of json) {
+        let tr = table.insertRow(-1);
+        for (let key in element) {
+          let cell = tr.insertCell(-1);
+          cell.innerHTML = element[key];
         }
+      }
+    }
+    const RemoveTicketForm = document.getElementById("removeTicket")
+
+    RemoveTicketForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      console.log(ticketNumber.value);
+      removeTicketResponse(ticketNumber.value);
+    });
+
+    async function removeTicketResponse(ticketNumberValue) {
+      let formObject = {
+        ticketNumber: ticketNumberValue
+      }
+
+      console.log(formObject);
+
+      let response = await fetch("http://localhost:8080/Project-1/tickets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Method": "removeTicket"
+        },
+        body: JSON.stringify(formObject)
+      });
+    }
   </script>
-
 </body>
-
 </html>
