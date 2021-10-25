@@ -5,64 +5,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <title>Registered User Page</title>
-    
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap JavaScript Bundle (Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <title>User Home</title>
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
 <body>
-    <div>
-        <h2> Welcome to your user page</h2>
+    <div id="img-div">
+        <img class="img-background" src="images/heagonlines.jpg" alt="hexagonal-lined-cubes">
+    </div>
+    <div class="top-div">
+        <div>
+            <h2> Welcome to your user page</h2>
+        </div>
+        
+        <div>
+            <h3>Here are all the avalible flights:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Flight Number |</th>
+                        <th>Origin |</th>
+                        <th>Destination |</th>
+                        <th>Start Date |</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody id="FlightsTable">
+    
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card mb-3 col-med-4 shadow">
+                    <img src="images/new-user.jpg" class="card-img-top" alt="welcome-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Select Flight Number to buy a ticket:</h3>
+                        <form id="purchaseTicket">
+                            <p class="card-text">Flight Number:</p>
+                            <input class="form-control" type="number" id="flightNumber"><br>
+                            <button class = "btn form-control btn-primary" type="submit">Buy Ticket</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <div>
+            
+        </div>
+        <div>
+            <h3>Select Ticket Number to Check-In:</h3>
+            <form id="checkIn">
+                <label for="ticket_number">Ticket Number:</label><br>
+                <input type="number" id="ticketNumber">
+                <button class = "btn anchors btn-dark" type="submit">Submit</button>
+            </form>
+        </div>
+        <div>
+            <h3>Select Ticket Number to Cancel:</h3>
+            <form id="cancelTicket">
+                <label for="ticket_number">Ticket Number:</label><br>
+                <input type="number" id="ticketNumber2">
+                <button class = "btn anchors btn-dark" type="submit">Submit</button>
+            </form>
+        </div>
+    
+    
     </div>
     
-    <div>
-        <h3>Here are all the avalible flights:</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Flight Number |</th>
-                    <th>Origin |</th>
-                    <th>Destination |</th>
-                    <th>Start Date |</th>
-                    <th>End Date</th>
-                </tr>
-            </thead>
-            <tbody id="FlightsTable">
-
-            </tbody>
-        </table>
-    </div>
-
-    <div>
-        <h3>Select Flight Number to buy a ticket:</h3>
-        <form id="purchaseTicket">
-            <label for="flight_number">Flight Number:</label><br>
-            <input type="number" id="flightNumber">
-            <button class = "btn btn-dark" type="submit">Buy Ticket</button>
-        </form>
-    </div>
-    <div>
-        <h3>Select Ticket Number to Check-In:</h3>
-        <form id="checkIn">
-            <label for="ticket_number">Ticket Number:</label><br>
-            <input type="number" id="ticketNumber">
-            <button class = "btn btn-dark" type="submit">Submit</button>
-        </form>
-    </div>
-    <div>
-        <h3>Select Ticket Number to Cancel:</h3>
-        <form id="cancelTicket">
-            <label for="ticket_number">Ticket Number:</label><br>
-            <input type="number" id="ticketNumber2">
-            <button class = "btn btn-dark" type="submit">Submit</button>
-        </form>
-    </div>
-
-
 
     <script>
         const urlParameters = new URLSearchParams(window.location.search);
