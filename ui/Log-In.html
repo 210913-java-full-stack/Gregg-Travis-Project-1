@@ -18,8 +18,6 @@
     </script>
     <title>Log-In Form</title>
     <link rel="stylesheet" href="css/styles.css">
-
-
 </head>
 
 <body>
@@ -27,31 +25,67 @@
         <img class="img-background" src="images/heagonlines.jpg" alt="hexagonal-lined-cubes">
     </div>
     <div class="top-div">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-md-6 g-4">
             <div class="col">
-                <div class="card mb-3 col-med-4 shadow">
-                    <img src="images/new-user.jpg" class="card-img-top" alt="welcome-img">
+                <div class="card mb-6 col-med-6 shadow">
+                    <img src="images/user-welcome.jpg" class="card-img-top" alt="user-welcome-img">
                     <div class="card-body">
-                        <h5 class="card-title">New User?</h5>
+                        <h5 class="card-title">Customer Sign-in</h5>
                         <p class="card-text">
-                            Register below:
+                            Please sign-in with your credentials to use this terminal
                         </p>
-                        <a href="Register.html" class="btn btn-primary">Right here</a>
+                        <form id="signInForm">
+                            <!-- 
+                                <div>
+                                        <p>Enter your user name and password:</p>
+                                        <input class="mb-3 form-control" type="text" name="user_name" id="user_name"
+                                            placeholder="User name" aria-label="User name" required />
+                                    </div>
+                                    <div>
+                                        <input class="mb-3 form-control" type="password" name="password" id="password"
+                                            placeholder="Password" aria-label="Password" required />
+                                    </div>
+                                </div>
+                                
+                                    <button type="submit"
+                                        class="btn btn-primary btn-med">Sign-up</button><br><br>
+                                
+                                <button type="reset"
+                                        class="btn btn-warning">Reset</button>
+                                
+                            </form>
+
+                             -->
+                             <div>
+                                <p class="card-text">Enter your user name:</p>
+                                <input class="mb-3 form-control" type="text" name="user_name" id="user_name"
+                                    placeholder="User name" aria-label="User name" required />
+                            </div>
+                            <div>
+                                <p class="card-text">Enter your password:</p>
+                                <input class="mb-3 form-control" type="password" name="password" id="password"
+                                    placeholder="Password" aria-label="Password" required />
+                            </div>
+                            <button type="submit"
+                                class=" form-control mb-3 btn btn-primary btn-med">Sign-up</button>
+                        
+                        <button type="reset"
+                                class="form-control mb-3 btn-med btn btn-warning">Reset</button>
+                        <p class="card-text">
+                            <a class="form-control btn mb-3 btn-outline-dark btn-med anchors" href="Register.html">Need to Register an account?</a>
+                        </p>
+                        </div>
+                        
+                            
+                        
+                    </form>
+                   
+                        
+
                     </div>
                 </div>
             </div>
-        <h2>Please sign-in with your credentials to use this terminal</h2>
-        <form id="signInForm">
-            <label for="user_name">User Name: </label><br>
-            <input type="text" name="user_name" id="user_name" required /><br>
-            <label for="password">Password: </label><br>
-            <input type="password" id="password" required /><br><br>
-            <button type="submit" class="anchors btn btn-outline-primary">Submit</button><br><br>
-            <input type="reset" value="Reset" class="anchors btn btn-outline-dark" /><br><br>
-        </form>
-
-        <a class="anchors" href="Register.html">Need to Register an account? Click here</a>
-
+        </div>
     </div>
 
     <script>
@@ -79,8 +113,10 @@
                     "Content-Type": "application/json",
                     "Method": "login"
                 },
-                headers: {"Content-Type": "application/json",
-                         "Method": "userLogin"},
+                headers: {
+                    "Content-Type": "application/json",
+                    "Method": "userLogin"
+                },
                 body: JSON.stringify(formObject)
 
 
@@ -88,8 +124,7 @@
 
 
             console.log(response); //do a fact finding explatory console mission
-            let object = response
-        .json(); //this parses the body assuming it's json, and returns a javascript object(
+            let object = response.json(); //this parses the body assuming it's json, and returns a javascript object(
             //console.log(object);
             let statusCode = response.status;
 
