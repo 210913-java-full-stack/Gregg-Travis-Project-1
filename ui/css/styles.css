@@ -36,14 +36,14 @@ h2{
     border-style: hidden;
 }
 
-.btn-primary{
+.btn-primary, .btn-outline-primary{
     z-index: 0;
     background-color: rgb(49, 49, 250);
     font-size: large;
     font-weight: 200;
     border-style: hidden;
-    
 }
+
 
 .img-background{
     z-index: -1;
@@ -75,6 +75,9 @@ a:hover{
     min-width: 50%;
     min-height: 50%;
 }
+#registerForm{
+    z-index: inherit;
+}
 
 .card{
     width: 18rem;
@@ -82,4 +85,13 @@ a:hover{
 .index-div{
     font-size: medium;
     font-weight: 400;
+}
+.sign-in-btn{
+    color: white;
+}
+.sign-in-btn:hover{
+    color:inherit;
+}
+.btn-warning:hover{
+    color: white;
 }
