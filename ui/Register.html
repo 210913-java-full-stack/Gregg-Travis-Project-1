@@ -101,8 +101,7 @@
             });
 
 
-            let object = response
-        .json(); //this parses the body assuming it's json, and returns a javascript object(
+            let object = response.json(); //this parses the body assuming it's json, and returns a javascript object(
             //console.log(object);
             let statusCode = response.status;
 
@@ -111,10 +110,9 @@
             } else if (statusCode === 200) {
 
                 window.location.href = "UserDashboard.html?userName=" + userValue;
-
-
+            
             }
-            Promise.resolve();
+            
         }
     </script>
 
