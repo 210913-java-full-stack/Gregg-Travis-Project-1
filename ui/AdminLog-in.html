@@ -68,6 +68,7 @@
             console.log(user_name.value);
             console.log(password.value);
             TestResponse(user_name.value, password.value);
+            event.stopImmediatePropagation();
         });
 
         async function TestResponse(userValue, passValue) {
@@ -92,17 +93,21 @@
             //continue here, use the response object
 
             console.log(response); //do a fact finding explatory console mission
-            let object = response
-                .json(); //this parses the body assuming it's json, and returns a javascript object(
+            
+            let object = response.json(); //this parses the body assuming it's json, and returns a javascript object
+            
             console.log(object);
+            
             let statusCode = response.status;
+            
             if (statusCode === 406) {
                 alert("User Name/Password combination not found! Please try again");
             } else if (statusCode === 202) {
+                
                 window.location.href = "Admin.html";
-
+                return statusCode;
             }
-            Promise.resolve();
+            
         }
     </script>
 </body>

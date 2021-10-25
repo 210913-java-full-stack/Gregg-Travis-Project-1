@@ -96,7 +96,6 @@
                 "http://localhost:8080/Project-1/flights"); //1 parameter assumes this is a get request
             let json = await response.json();
             await populateTable(json);
-            Promise.resolve();
         })();
 
         function populateTable(json) {
@@ -136,6 +135,7 @@
                 },
                 body: JSON.stringify(formObject)
             });
+            
         }
 
         const checkInForm = document.getElementById("checkIn")
@@ -162,6 +162,7 @@
                 },
                 body: JSON.stringify(formObject)
             });
+         
         }
 
         const CancelTicketForm = document.getElementById("cancelTicket")
@@ -170,6 +171,7 @@
             event.preventDefault();
             console.log(ticketNumber2.value);
             cancelTicketResponse(ticketNumber2.value);
+            
         });
 
         async function cancelTicketResponse(ticketNumberValue) {
@@ -188,6 +190,7 @@
                 },
                 body: JSON.stringify(formObject)
             });
+           
         }
     </script>
 
