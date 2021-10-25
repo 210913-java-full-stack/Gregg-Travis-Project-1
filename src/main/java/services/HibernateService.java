@@ -31,8 +31,7 @@ public class HibernateService {
 //            config.setProperty("hibernate.hbm2ddl.auto", System.getProperty("HIBERNATE_HBM2DDL_AUTO"));
 //            config.setProperty("hibernate.connection.autocommit", System.getProperty("HIBERNATE_CONNECTION_AUTOCOMMIT"));
 //            config.setProperty("hibernate.show_sql", System.getProperty("HIBERNATE_SHOW_SQL"));
-
-
+//        }
 
         //add model classes
         config.addAnnotatedClass(UserModel.class);
