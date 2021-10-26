@@ -16,6 +16,12 @@ public class FlightService {
     private static Session session;
 
     //create method
+
+    /**
+     * This method takes in the flight information that's been put into a FlightModel, begins a transaction, saves the
+     * FlightModel to the flights table via Hibernate then commits the change to the table
+     * @param flight
+     */
     public static void addFlight(FlightsModel flight) {
         Transaction trans = session.beginTransaction();
         flight.setStatus("ON TIME");
@@ -25,6 +31,11 @@ public class FlightService {
 
     //read method
 
+    /**
+     * This function will get all records in the flights table and return it in a List format to be sent to the calling
+     * website to be put into a table
+     * @return
+     */
     public static List<FlightsModel> getAllFlights() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<FlightsModel> query = builder.createQuery(FlightsModel.class);
@@ -33,6 +44,13 @@ public class FlightService {
         return session.createQuery(query).getResultList();
     }
 
+    /**
+     * This method will query and change two tables. The first query will search for the flight number (fn) brought in
+     * by the webpage it will take the record and change the status to CANCELLED. The second query will search for all
+     * tickets that havE the fn brought in and using a for each table change all status(es) to "CANCELLED" then commit
+     * all changes.
+     * @param fn
+     */
     //delete method
     public static void deleteFlight(int fn) {
         session.beginTransaction();
@@ -53,8 +71,6 @@ public class FlightService {
             ticketsModel.setStatus("CANCELLED");
             session.update(ticketsModel);
         }
-
-
         session.getTransaction().commit();
     }
 

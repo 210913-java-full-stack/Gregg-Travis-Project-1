@@ -16,6 +16,11 @@ public class UserService {
 
     //create method
 
+    /**
+     * This method takes in the user information that's been put into a UserModel, begins a transaction, saves the user
+     * to the users table via Hibernate then commits the change to the table
+     * @param user
+     */
     public static void saveNewUser(UserModel user) {
         Transaction trans = session.beginTransaction();
         session.save(user);
@@ -23,6 +28,14 @@ public class UserService {
     }
 
     //read methods
+
+    /**
+     * This method takes in userName and password from the webpage, queries the database and returns a UserModel that is
+     * either null or has the data that matches the userName and password from the database
+     * @param user
+     * @param pass
+     * @return
+     */
     public static UserModel checkUserByUserPass(String user, String pass) {
         UserModel checkUser;
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -36,6 +49,13 @@ public class UserService {
         return checkUser;
     }
 
+    /**
+     * This method queries the database if any record has the userName brought into the method and puts in into a List.
+     * If the List is empty the method will return true(the userName is unique) otherwise the result is false (the user
+     * exists in the database)
+     * @param username
+     * @return
+     */
     public static boolean uniqueUsername(String username)
     {
         CriteriaBuilder builder = session.getCriteriaBuilder();
