@@ -18,6 +18,7 @@ public class FlightService {
     //create method
     public static void addFlight(FlightsModel flight) {
         Transaction trans = session.beginTransaction();
+        flight.setStatus("ON TIME");
         session.save(flight);
         trans.commit();
     }
@@ -42,7 +43,8 @@ public class FlightService {
         Root<FlightsModel> deleteRoot = deleteQuery.from(FlightsModel.class);
         deleteQuery.select(deleteRoot).where(builder.equal(deleteRoot.get("flightNumber"), fn));
         getFlight = session.createQuery(deleteQuery).getSingleResult();
-        session.delete(getFlight);
+        getFlight.setStatus("CANCELLED");
+        session.update(getFlight);
         CriteriaQuery<TicketsModel> updateQuery = builder.createQuery(TicketsModel.class);
         Root<TicketsModel> updateRoot = updateQuery.from(TicketsModel.class);
         updateQuery.select(updateRoot).where(builder.equal(updateRoot.get("flightNumber"), fn));
@@ -51,6 +53,7 @@ public class FlightService {
             ticketsModel.setStatus("CANCELLED");
             session.update(ticketsModel);
         }
+
 
         session.getTransaction().commit();
     }
