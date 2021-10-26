@@ -12,6 +12,11 @@ import java.util.List;
 public class TicketsService {
     private static Session session;
 
+    /**
+     * This method brings in a ticket object created by bringing in the userName and flightNumber from the webpage add in
+     * checkIn = false via the constructor and having Hibernate add that model to the tickets table
+     * @param ticket
+     */
     public static void addTicket(TicketsModel ticket) {
         Transaction trans = session.beginTransaction();
         ticket.setStatus("ON TIME");
@@ -19,6 +24,11 @@ public class TicketsService {
         trans.commit();
     }
 
+    /**
+     * This method brings queries the tickets table and for the record that matches the ticket number (tn) Hibernate
+     * will delete that record from the tickets table
+     * @param tn
+     */
     public static void deleteTicket(Integer tn) {
         TicketsModel ticket;
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -53,7 +63,11 @@ public class TicketsService {
         tx.commit();
     }
 
-
+    /**
+     * This function will get all records in the tickets table and return it in a List format to be sent to the calling
+     * website to be put into a table
+     * @return
+     */
     public static List<TicketsModel> getAllTickets() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketsModel> query = builder.createQuery(TicketsModel.class);

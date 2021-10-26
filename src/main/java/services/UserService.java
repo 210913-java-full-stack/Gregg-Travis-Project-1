@@ -36,6 +36,11 @@ public class UserService {
         return checkUser;
     }
 
+    /**
+     * THis method queries the database if any record has the userName
+     * @param username
+     * @return
+     */
     public static boolean uniqueUsername(String username)
     {
         CriteriaBuilder builder = session.getCriteriaBuilder();
