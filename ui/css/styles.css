@@ -1,13 +1,10 @@
 body{
     z-index: 0;
     font-family: 'Roboto', sans-serif;
-    background-image: radial-gradient( rgb(130, 130, 240), lightblue);
+    background-image: radial-gradient( rgb(111, 111, 223), lightblue);
 }
 
-html{
-    margin-bottom: 0%;
-    background-size: 0%;
-}
+
 
 h2{
     font-weight: bold;

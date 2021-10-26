@@ -24,6 +24,7 @@ public class FlightService {
      */
     public static void addFlight(FlightsModel flight) {
         Transaction trans = session.beginTransaction();
+        flight.setStatus("ON TIME");
         session.save(flight);
         trans.commit();
     }

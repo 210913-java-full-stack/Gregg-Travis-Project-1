@@ -35,6 +35,7 @@
             <th scope="col">User Name</th>
             <th scope="col">Flight Number</th>
             <th scope="col">Checked In?</th>
+            <th scope="col">Flight Status</th>
           </tr>
         </thead>
         <tbody id="activeTicketsTable">
@@ -144,7 +145,7 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Method: "addFlight",
+          "Method": "addFlight",
         },
         body: JSON.stringify(formObject),
       });
@@ -203,7 +204,7 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Method: "cancelFlight",
+          "Method": "cancelFlight",
         },
         body: JSON.stringify(formObject),
       });
@@ -250,12 +251,12 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Method: "removeTicket",
+          "Method": "removeTicket",
         },
         body: JSON.stringify(formObject),
       });
       console.log("removeTicketResponse end");
-      //Promise.resolve();
+
     }
   </script>
 </body>
