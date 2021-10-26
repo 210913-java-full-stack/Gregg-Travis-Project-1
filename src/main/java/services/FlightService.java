@@ -24,10 +24,6 @@ public class FlightService {
 
     //read method
 
-    public static FlightsModel getFlightByFlightNumber(int fn) {
-     return null;
-    }
-
     public static List<FlightsModel> getAllFlights() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<FlightsModel> query = builder.createQuery(FlightsModel.class);

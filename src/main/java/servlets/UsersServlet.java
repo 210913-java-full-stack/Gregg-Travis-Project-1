@@ -34,8 +34,6 @@ public class UsersServlet extends HttpServlet {
                         resp.setStatus(406);
                     }
                     break;
-                case "login":
-                    System.out.println("made to login servlet case");
                 case "userLogin":
                     UserModel checkUser;
                     checkUser = UserService.checkUserByUserPass(payload.getUserName(), payload.getPass());
@@ -49,7 +47,7 @@ public class UsersServlet extends HttpServlet {
                     break;
                 case "adminLogin":
                     UserModel checkAdmin;
-                    checkAdmin = UserService.checkAdmin(payload.getUserName(), payload.getPass());
+                    checkAdmin = UserService.checkUserByUserPass(payload.getUserName(), payload.getPass());
                     if (checkAdmin != null && checkAdmin.getRole().equals(2)) {
                         String json = mapper.writeValueAsString(checkAdmin);
                         resp.setStatus(202);
