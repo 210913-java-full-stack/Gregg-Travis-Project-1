@@ -29,6 +29,7 @@ public class UsersServlet extends HttpServlet {
                     if (UserService.uniqueUsername(payload.getUserName())) {
                         UserService.saveNewUser(payload);
                         resp.setStatus(200);
+                        resp.setContentType("text/plain");
                     } else {
                         resp.setStatus(406);
                     }

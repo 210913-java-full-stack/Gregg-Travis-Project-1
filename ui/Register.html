@@ -25,13 +25,14 @@
     </div>
 
     <div class="top-div">
-        <h2 class="top">Please fill in the following<br>fields to create an account:</h2>
+        
         <div class="row row-cols-1 row-cols-md-6 g-4">
             <div class="col">
                 <div class="card mb-6 col-med-6 shadow">
                     <img src="images/new-user.jpg" class="card-img-top" alt="user-welcome-img">
                     <div class="card-body">
-                        <h5 class="card-title">Customer Sign-up</h5>
+                        <h5 class="card-title">Please fill in the following<br>fields to create an account:</h5>
+                        <h6 class="card-text">Customer Sign-up</h6>
                         <p class="card-text">
                             <form id="registerForm">
                                 <div>
@@ -56,9 +57,9 @@
                                 </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-med">Sign-up</button><br><br>
+                    <button type="submit" class="mb-3 btn btn-primary btn-med">Sign-up</button><br><br>
 
-                    <button type="reset" class="btn btn-warning">Reset</button>
+                    <button type="reset" class="mb-3 btn btn-warning btn-med">Reset</button>
 
                     </form>
 
@@ -100,19 +101,22 @@
                 body: JSON.stringify(formObject)
             });
 
+            //let object = response.json(); //this parses the body assuming it's json, and returns a javascript object(
+            return response.text().then(function () {
 
-            let object = response.json(); //this parses the body assuming it's json, and returns a javascript object(
+                let statusCode = response.status;
+
+                if (statusCode === 406) {
+                    alert("Bad user input Please try again");
+                } else if (statusCode === 200) {
+
+                    window.location.href = "UserDashboard.html?userName=" + userValue;
+
+                }
+            });
             //console.log(object);
-            let statusCode = response.status;
 
-            if (statusCode === 406) {
-                alert("Bad user input Please try again");
-            } else if (statusCode === 200) {
 
-                window.location.href = "UserDashboard.html?userName=" + userValue;
-            
-            }
-            
         }
     </script>
 
