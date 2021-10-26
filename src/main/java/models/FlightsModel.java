@@ -27,6 +27,9 @@ public class FlightsModel {
     @Column
     private String end;
 
+    @Column
+    private String status;
+
     @OneToMany
     List<TicketsModel> tickets;
 
@@ -81,5 +84,13 @@ public class FlightsModel {
 
     public void setEnd(String end) {
         this.end = end;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
