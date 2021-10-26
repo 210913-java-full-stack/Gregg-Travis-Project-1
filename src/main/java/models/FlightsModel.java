@@ -1,10 +1,13 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name="flights")
+
 public class FlightsModel {
 
     @Id

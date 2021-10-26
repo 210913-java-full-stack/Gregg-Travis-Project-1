@@ -1,6 +1,7 @@
 package services;
 
 import models.FlightsModel;
+import models.TicketsModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,10 +18,6 @@ public class FlightService {
     //create method
     public static void addFlight(FlightsModel flight) {
         Transaction trans = session.beginTransaction();
-        String begin = flight.getBegin();
-        String end = flight.getEnd();
-        System.out.println(begin);
-        System.out.println(end);
         session.save(flight);
         trans.commit();
     }
@@ -43,12 +40,22 @@ public class FlightService {
     public static void deleteFlight(int fn) {
         session.beginTransaction();
         FlightsModel getFlight;
+        List<TicketsModel> getTicket;
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<FlightsModel> query = builder.createQuery(FlightsModel.class);
-        Root<FlightsModel> root = query.from(FlightsModel.class);
-        query.select(root).where(builder.equal(root.get("flightNumber"), fn));
-        getFlight = session.createQuery(query).getSingleResult();
+        CriteriaQuery<FlightsModel> deleteQuery = builder.createQuery(FlightsModel.class);
+        Root<FlightsModel> deleteRoot = deleteQuery.from(FlightsModel.class);
+        deleteQuery.select(deleteRoot).where(builder.equal(deleteRoot.get("flightNumber"), fn));
+        getFlight = session.createQuery(deleteQuery).getSingleResult();
         session.delete(getFlight);
+        CriteriaQuery<TicketsModel> updateQuery = builder.createQuery(TicketsModel.class);
+        Root<TicketsModel> updateRoot = updateQuery.from(TicketsModel.class);
+        updateQuery.select(updateRoot).where(builder.equal(updateRoot.get("flightNumber"), fn));
+        getTicket = session.createQuery(updateQuery).getResultList();
+        for (TicketsModel ticketsModel : getTicket) {
+            ticketsModel.setStatus("CANCELLED");
+            session.update(ticketsModel);
+        }
+
         session.getTransaction().commit();
     }
 

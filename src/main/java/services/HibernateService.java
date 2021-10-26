@@ -16,7 +16,7 @@ public class HibernateService {
     private static void configSession() {
         //Set up hibernate properties
         Configuration config = new Configuration();
-        //if(System.getProperty("TEST") == "TRUE") {
+       if(System.getProperty("TEST") == "TRUE") {
             //we are getting hibernate config info from System properties. Probably for running on a Tomcat server on AWS
             //System.getenv("TEST");//Tomcat on elastic beanstalk will not see these
             //System.getProperty("TEST");//Tomcat on EBS will see these. That's why we use them below.
@@ -31,8 +31,7 @@ public class HibernateService {
 //            config.setProperty("hibernate.hbm2ddl.auto", System.getProperty("HIBERNATE_HBM2DDL_AUTO"));
 //            config.setProperty("hibernate.connection.autocommit", System.getProperty("HIBERNATE_CONNECTION_AUTOCOMMIT"));
 //            config.setProperty("hibernate.show_sql", System.getProperty("HIBERNATE_SHOW_SQL"));
-//        }
-
+      }
 
         //add model classes
         config.addAnnotatedClass(UserModel.class);
