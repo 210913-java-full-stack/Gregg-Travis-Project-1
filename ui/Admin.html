@@ -15,6 +15,7 @@
   <title>AdminFlightPage</title>
   <!-- custom css: -->
   <link rel="stylesheet" href="css/styles.css" />
+
 </head>
 
 <body>
@@ -23,82 +24,90 @@
   </div>
 
   <div class="top-div">
-    <div class="row row-cols-1 row-cols-md-6 g-4">
+
+    <div>
+      <h1>Active Tickets:</h1>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Ticket Number</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Flight Number</th>
+            <th scope="col">Checked In?</th>
+          </tr>
+        </thead>
+        <tbody id="activeTicketsTable">
+
+        </tbody>
+      </table>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
-        <div class="card mb-6 col-med-6 shadow">
-          <img src="images/user-welcome.jpg" class="card-img-top" alt="user-welcome-img">
+        <div class="card mb-3 col-med-4 shadow">
+          <img src="images/user-welcome.jpg" class="card-img-top" alt="sky-img">
           <div class="card-body">
             <h5 class="card-title">Schedule New Flight</h5>
-            <p class="card-text">
-              Please fill out the credentials to schedule a new flight:
-            </p>
+
             <form id="addFlight">
+              <p class="card-text">
+                Please fill out the form to schedule a new flight:
+              </p>
+              <p class="card-text">Origin City:</p>
+              <input class="form-control" type="text" name="origin" id="originCity" placeholder="Origin City"
+                aria-label="Originating city name" required />
+              <p class="card-text">Destination:</p>
+              <input class="form-control" type="text" name="destination" id="destination" placeholder="Destination City"
+                aria-label="Destination city name" required />
 
-              <div>
-                <p class="card-text">Origin City:</p>
-                <input class="mb-3 form-control" type="text" name="origin" id="originCity" placeholder="Origin City"
-                  aria-label="Originating city name" required />
-              </div>
-              <div>
-                <p class="card-text">Destination:</p>
-                <input class="mb-3 form-control" type="text" name="destination" id="destination"
-                  placeholder="Destination City" aria-label="Destination city name" required />
-              </div>
-              <div>
-                <p class="card-text">Start Date:</p>
-                <input class="mb-3" type="date" name="start_time" id="start_time" required />
-              </div>
-              <div>
-                <p class="card-text">End Date: </p>
-                <input class="mb-3" type="date" name="end_time" id="end_time" required />
-              </div>
+
+              <p class="card-text">Start Date:</p>
+              <input class="mb-3" type="date" name="start_time" id="start_time" required>
+
+              <p class="card-text">End Date: </p>
+              <input class="mb-3" type="date" name="end_time" id="end_time" required>
+
               <button type="submit" class=" form-control mb-3 btn btn-primary btn-med">Schedule</button>
-
               <button type="reset" class="form-control mb-3 btn-med btn btn-warning">Reset</button>
             </form>
           </div>
         </div>
       </div>
-      <!-- next cards go here, each is a col in the row -->
-
+      <div class="col">
+        <div class="card mb-3 col-med-4 shadow">
+          <img src="images/admin-welcome.jpg" class="card-img-top" alt="boarding-img">
+          <div class="card-body">
+            <h5 class="card-title">Cancel Flight</h5>
+            <form id="cancelFlight">
+              <p class="card-text">
+                Enter flight number to cancel below:
+              </p>
+              <input class="mb-3" type="number" id="flightNumber" required>
+              <button class="form-control mb-3 btn-med btn-primary" type="submit">Cancel Flight</button>
+              <button class="form-control mb-3 btn-med btn-warning" type="reset">Reset</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-3 col-med-4 shadow">
+          <img src="images/new-user.jpg" class="card-img-top" alt="cancel-img">
+          <div class="card-body">
+            <form id="removeTicket">
+              <p class="card-text">
+                If you would like to remove a ticket enter the ticket number below:
+              </p>
+              <input class="mb-3"type="number" name="ticketNumber" id="ticketNumber" />
+              <button class=" form-control btn btn-med mb-3 btn-warning" type="submit">Remove Ticket</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-
-
 
   </div>
 
-  <div>
-    <h1>Cancel A Flight</h1>
-    <form id="cancelFlight">
-      <label for="flightNumber">Flight Number: </label><br />
-      <input type="number" id="flightNumber" required /><br /><br />
-      <button type="submit">Cancel Flight</button><br /><br />
-      <button type="reset">Reset</button>
-    </form>
-  </div>
 
-  <div>
-    <h1>Active Ticket(s)</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Ticket Number |</th>
-          <th>User Name |</th>
-          <th>Flight Number |</th>
-          <th>Checked In?</th>
-        </tr>
-      </thead>
-      <tbody id="activeTicketsTable"></tbody>
-    </table>
-    <form id="removeTicket">
-      <br /><label for="ticketNumber" text-align: center>If you would like to remove a ticket enter the ticket number
-        below:</label><br />
-      <input type="number" name="ticketNumber" id="ticketNumber" />
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+
+
 
   <script>
     const form = document.getElementById("addFlight");
