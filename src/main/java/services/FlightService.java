@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FlightService {
@@ -41,7 +40,7 @@ public class FlightService {
     public static void deleteFlight(int fn) {
         session.beginTransaction();
         FlightsModel getFlight;
-        List<TicketsModel> getTicket = new ArrayList<>();
+        List<TicketsModel> getTicket;
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<FlightsModel> deleteQuery = builder.createQuery(FlightsModel.class);
         Root<FlightsModel> deleteRoot = deleteQuery.from(FlightsModel.class);
@@ -52,9 +51,9 @@ public class FlightService {
         Root<TicketsModel> updateRoot = updateQuery.from(TicketsModel.class);
         updateQuery.select(updateRoot).where(builder.equal(updateRoot.get("flightNumber"), fn));
         getTicket = session.createQuery(updateQuery).getResultList();
-        for(int i = 0; i < getTicket.size(); i++) {
-            getTicket.get(i).setStatus("CANCELLED");
-            session.update(getTicket);
+        for (TicketsModel ticketsModel : getTicket) {
+            ticketsModel.setStatus("CANCELLED");
+            session.update(ticketsModel);
         }
 
         session.getTransaction().commit();
