@@ -35,18 +35,6 @@ public class UserService {
         checkUser = session.createQuery(query).getSingleResult();
         return checkUser;
     }
-    public static UserModel checkAdmin(String user, String pass) {
-        UserModel checkAdmin;
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<UserModel> query = builder.createQuery(UserModel.class);
-        Root<UserModel> root = query.from(UserModel.class);
-        query.select(root).where(
-                builder.and(
-                        builder.equal(root.get("userName"), user),
-                        builder.equal(root.get("pass"), pass)));
-        checkAdmin = session.createQuery(query).getSingleResult();
-        return checkAdmin;
-    }
 
     public static boolean uniqueUsername(String username)
     {

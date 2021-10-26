@@ -58,7 +58,7 @@ public class FileLogger {
 
     private String getLogFileName() {
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        return "logs/" + today + "log";
+        return "C:/Users/Hawkx1/Documents/Revature-Training/Gregg-Travis-Project-1/logs/" + today + "log";
     }
 
     private String formatLogEntry(String message) {
