@@ -27,65 +27,77 @@
     </div>
     <div class="top-div">
         <div>
-            <h2> Welcome to your user page</h2>
+            <h2> Welcome to the Dashboard</h2>
         </div>
-        
         <div>
             <h3>Here are all the avalible flights:</h3>
-            <table>
+            <table class="table table-dark">
                 <thead>
                     <tr>
+<<<<<<< HEAD
                         <th>Flight Number </th>
                         <th>| Origin</th>
                         <th>| Destination</th>
                         <th>| Start Date</th>
                         <th>| End Date</th>
+=======
+                        <th scope="col">Flight Number</th>
+                        <th scope="col">Origin</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+>>>>>>> dd293ef27ae187ae55d3c39c43da026ab86224f6
                     </tr>
                 </thead>
                 <tbody id="FlightsTable">
-    
+
                 </tbody>
             </table>
         </div>
-
-
+        
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card mb-3 col-med-4 shadow">
-                    <img src="images/new-user.jpg" class="card-img-top" alt="welcome-img">
+                    <img src="images/user-welcome.jpg" class="card-img-top" alt="sky-img">
                     <div class="card-body">
-                        <h3 class="card-title">Select Flight Number to buy a ticket:</h3>
+                        <h3 class="card-title">Purchase a Ticket:</h3>
                         <form id="purchaseTicket">
-                            <p class="card-text">Flight Number:</p>
+                            <p class="card-text">Enter the Flight Number to purchase a ticket:</p>
                             <input class="form-control" type="number" id="flightNumber"><br>
-                            <button class = "btn form-control btn-primary" type="submit">Buy Ticket</button>
+                            <button class="btn form-control btn-primary" type="submit">Buy Ticket</button>
                         </form>
                     </div>
                 </div>
             </div>
-        <div>
-            
+            <div class="col">
+                <div class="card mb-3 col-med-4 shadow">
+                    <img src="images/admin-welcome.jpg" class="card-img-top" alt="boarding-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Check-in:</h3>
+                        <form id="checkIn">
+                            <p class="card-text">Enter Ticket Number to check-in for your flight:</p>
+                            <input class="form-control" type="number" id="TicketNumber"><br>
+                            <button class="btn form-control btn-primary" type="submit">Check-in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-3 col-med-4 shadow">
+                    <img src="images/new-user.jpg" class="card-img-top" alt="cancel-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Cancel Ticket:</h3>
+                        <form id="cancelTicket">
+                            <p class="card-text">Enter Ticket Number to cancel ticket:</p>
+                            <input class="form-control" type="number" id="ticketNumber2"><br>
+                            <button class="btn form-control btn-primary" type="submit">Buy Ticket</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <h3>Select Ticket Number to Check-In:</h3>
-            <form id="checkIn">
-                <label for="ticket_number">Ticket Number:</label><br>
-                <input type="number" id="ticketNumber">
-                <button class = "btn anchors btn-dark" type="submit">Submit</button>
-            </form>
-        </div>
-        <div>
-            <h3>Select Ticket Number to Cancel:</h3>
-            <form id="cancelTicket">
-                <label for="ticket_number">Ticket Number:</label><br>
-                <input type="number" id="ticketNumber2">
-                <button class = "btn anchors btn-dark" type="submit">Submit</button>
-            </form>
-        </div>
-    
-    
     </div>
-    
+
 
     <script>
         const urlParameters = new URLSearchParams(window.location.search);
@@ -135,7 +147,7 @@
                 },
                 body: JSON.stringify(formObject)
             });
-            
+
         }
 
         const checkInForm = document.getElementById("checkIn")
@@ -162,7 +174,7 @@
                 },
                 body: JSON.stringify(formObject)
             });
-         
+
         }
 
         const CancelTicketForm = document.getElementById("cancelTicket")
@@ -171,7 +183,7 @@
             event.preventDefault();
             console.log(ticketNumber2.value);
             cancelTicketResponse(ticketNumber2.value);
-            
+
         });
 
         async function cancelTicketResponse(ticketNumberValue) {
@@ -190,7 +202,7 @@
                 },
                 body: JSON.stringify(formObject)
             });
-           
+
         }
     </script>
 
