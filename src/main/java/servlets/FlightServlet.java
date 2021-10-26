@@ -31,7 +31,6 @@ public class FlightServlet extends HttpServlet {
                     FlightService.addFlight(payload);
                     break;
                 case "cancelFlight":
-                    System.out.println("DEBUG: cancel flight reached");
                     System.out.println(payload.getFlightNumber());
                     FlightService.deleteFlight(payload.getFlightNumber());
                     break;

@@ -14,6 +14,7 @@ public class TicketsService {
 
     public static void addTicket(TicketsModel ticket) {
         Transaction trans = session.beginTransaction();
+        ticket.setStatus("ON TIME");
         session.save(ticket);
         trans.commit();
     }

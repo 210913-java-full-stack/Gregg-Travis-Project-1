@@ -19,6 +19,9 @@ public class TicketsModel {
     @Column (name="checked_in")
     private boolean checkIn;
 
+    @Column
+    private String status;
+
     public TicketsModel() {}
 
     public TicketsModel(Integer flightNumber) {
@@ -29,6 +32,7 @@ public class TicketsModel {
         this.userName = userName;
         this.flightNumber = flightNumber;
         this.checkIn = false;
+        this.status = "ON TIME";
     }
 
     public Integer getTicketNumber() {
@@ -61,5 +65,13 @@ public class TicketsModel {
 
     public void setCheckIn(boolean checkIn) {
         this.checkIn = checkIn;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
