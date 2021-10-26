@@ -120,10 +120,10 @@
             event.preventDefault();
             console.log(flightNumber.value);
             console.log(urlParameters.get("username"));
-            PuchaseTicketResponse(flightNumber.value);
+            PurchaseTicketResponse(flightNumber.value);
         });
 
-        async function PuchaseTicketResponse(flightNumberValue) {
+        async function PurchaseTicketResponse(flightNumberValue) {
             let formObject = {
                 userName: urlParameters.get("userName"),
                 flightNumber: flightNumberValue,
