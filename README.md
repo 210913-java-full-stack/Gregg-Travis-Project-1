@@ -43,10 +43,10 @@ These are user stories to describe the airline ticketing kiosk app. If you are n
 - [x] As a user, I can cancel my ticket. 				
 - [x] As an administrator, I can schedule a new flight.			
 - [x] As an administrator, I can cancel a flight.			
-- [ ] As an administrator, I can see all users with tickets for a flight. (in progress)
+- [x] As an administrator, I can see all users with tickets for a flight.
 
 ### Bonus Stories
-- [ ] As an administrator, I can cancel a ticket on any flight.
+- [x] As an administrator, I can cancel a ticket on any flight.
 - [ ] As an pilot, I can initiate takeoff of a flight. (No more new tickets or cancellations)
 
 ## Tech Stack
@@ -58,7 +58,7 @@ The application should be properly employing the following technologies:
  - [x] Git & Github for version control
  - [x] MariaDB deployed on AWS RDS for data persistence
  - [x] Hibernate to abstract away JDBC code
- - [ ] AWS EC2, ElasticBeanstalk, S3, CodeBuild, CodePipeline (in progress)
+ - [x] AWS EC2, ElasticBeanstalk, S3, CodeBuild, CodePipeline
 
 ## Deadline & Presentation
  - Finalized version of the project must be pushed to your team's p1 repository within the training originzation by 9:00 AM Central time on the date of the presentation showcase. Commits after that time will not be considered. The most recent commit submitted before that time will be the version of the project that is graded.
